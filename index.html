@@ -41,7 +41,7 @@
                 <p class="bold-text">Hi!</p>
                 <p>My name is Abdul Rehman Daniyal. I am a self-taught frontend developer by passion while I am pursuing in a Bachelor's degree in Computer Science.</p>
                 <p>I am an introvert who is obsessive about my field of study and is constantly trying to increase my knowledge and skills. So much so that coding is my biggest hobby.</p>
-                <a class="btn" target="_blank" href="https://1drv.ms/b/s!AhCZTJP8Fi7tlXnsyqmrtqJ98Ln9?e=cBfDeg">Download CV</a>
+                <a class="btn primary-btn" target="_blank" href="https://1drv.ms/b/s!AhCZTJP8Fi7tlXnsyqmrtqJ98Ln9?e=cBfDeg">Download CV</a>
             </div>
         </div>
     </section>
@@ -113,7 +113,7 @@
                 <h3>My Personal projects</h3>
                 <div class="projects-container"></div>
             </div> -->
-            <div id="mentor-challenges">
+            <div id="frontend_mentor_challenges">
                 <h3>Frontend Mentor Challenges</h3>
                 <p>These are some <a target="_blank" href="https://www.frontendmentor.io/challenges">Frontend Mentor</a> challenges where I created mock websites from the given design to demonstrate my pixel perfect implementation.</p>
                 <div class="projects-container"></div>
@@ -124,17 +124,17 @@
     <section id="contact">
         <h2>Contact Me</h2>
         <div class="container">
-            <a href="mailto:ar618211@outlook.com" target="_blank" class="btn">
+            <a href="mailto:ar618211@outlook.com" target="_blank" class="btn dark-btn">
                 <i class="fa-solid fa-envelope"></i>
                 ar618211@outlook.com
             </a>
 
-            <a href="https://www.linkedin.com/in/abdul-rehman-d/" target="_blank" class="btn">
+            <a href="https://www.linkedin.com/in/abdul-rehman-d/" target="_blank" class="btn dark-btn">
                 <i class="fa-brands fa-linkedin"></i>
                 abdul-rehman-d
             </a>
 
-            <a href="https://github.com/abdul-rehman-d/" target="_blank" class="btn">
+            <a href="https://github.com/abdul-rehman-d/" target="_blank" class="btn dark-btn">
                 <i class="fa-brands fa-github"></i>
                 abdul-rehman-d
             </a>
@@ -145,18 +145,18 @@
         © 2022 Abdul Rehman Daniyal
     </footer>
 
-    <template id="project-card">
+    <template id="project-card-template">
         <div class="card">
             <div class="card-img"><img src="" alt=""></div>
-            <div class="card-body">
                 <h3 class="card-title"></h3>
                 <p class="card-description"></p>
                 <div class="btns-container">
-                    <a href="" class="card-btn github-link">Source Code</a>
-                    <a href="" class="card-btn live-link">Live Demo</a>
+                    <a target="_blank" href="" class="btn primary-btn github-link">Source Code</a>
+                    <a target="_blank" href="" class="btn primary-btn live-link">Live Demo</a>
                 </div>
-            </div>
         </div>
     </template>
+
+    <script type="module" src="./script.js"></script>
 </body>
 </html>
