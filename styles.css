@@ -109,6 +109,7 @@ a.btn {
 body {
 	color: var(--clr-dark-gray);
 	font-size: 18px;
+	background-color: #fff;
 }
 section:not(#home) {
 	padding-bottom: 4rem;
