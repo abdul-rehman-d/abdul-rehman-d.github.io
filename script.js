@@ -45,7 +45,7 @@ function main(data) {
             const item = template.content.cloneNode(true)
             
             const projectNum = project.folderName.slice(0, 2)
-            item.querySelector('.card-img img').setAttribute('src', `${githubLink}/${repoName}/raw/main/assets/${projectNum}.png`)
+            item.querySelector('.card-img img').setAttribute('src', `${githubLink}/${repoName}/raw/main/assets/${projectNum}.jpg`)
 
             item.querySelector('.card-title').innerText = project['name']
             item.querySelector('.card-description').innerText = project['description']
