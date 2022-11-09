@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar"
+import AboutSection from "../components/sections/AboutSection"
 import HomeSection from "../components/sections/HomeSection"
 
 function HomePage() {
@@ -6,6 +7,7 @@ function HomePage() {
     <div className="bg-dark">
       <Navbar />
       <HomeSection />
+      <AboutSection />
     </div>
   )
 }
