@@ -1,23 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import star from './../../assets/star.png'
 
 const HomeSection = () => {
-  const containerRef = useRef(null)
+  
   return (
-    <div className='fill-remaining flex items-center lg:px-32 md:px-16 px-8 md:gap-10 relative overflow-hidden' ref={containerRef}>
-      <div className="absolute inset-0">
-        {Array(window.innerWidth < 779 ? 20 : window.innerWidth > 991 ? 35 : 50).fill(0).map(() => (
-          <img
-            src={star}
-            className='absolute w-10 h-10 z-0 animate-pulse'
-            style={{
-              top: Math.floor(Math.random()*window.innerHeight-400/10),
-              left: Math.floor(Math.random()*window.innerWidth-400/10),
-              rotate: `${Math.floor(Math.random()*90-1)}deg`,
-            }}
-          />
-        ))}
-      </div>
+    <div className='fill-remaining flex items-center section-wrapper py-0 md:gap-10 relative overflow-hidden'>
       <div className="flex flex-col p-2 md:p-0 gap-2 text-center md:text-left z-10">
         <p className="text-white text-3xl bg-dark w-full md:w-fit">Hello, I am</p>
         <h1 className="text-primary-400 text-5xl bg-dark">Abdul Rehman Daniyal</h1>
