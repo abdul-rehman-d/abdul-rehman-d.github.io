@@ -6,6 +6,11 @@
   height: calc(100vh - 4rem);
 }
 
+.section-wrapper > * {
+  z-index: 1;
+  position: relative;
+}
+
 @layer components {
   .section-wrapper {
     @apply py-16 lg:px-16 md:px-8 px-8 text-white z-10;
