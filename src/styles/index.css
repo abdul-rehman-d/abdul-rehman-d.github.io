@@ -23,6 +23,6 @@
     @apply py-1 px-2 bg-white text-dark font-medium rounded-2xl cursor-pointer;
   }
   .options-container > div > input:checked + label {
-    @apply bg-primary-500;
+    @apply bg-primary-400;
   }
 }

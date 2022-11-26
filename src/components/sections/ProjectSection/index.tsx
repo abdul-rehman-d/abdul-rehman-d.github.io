@@ -1,4 +1,4 @@
-import Options from "../ui/Options";
+import Options from "./subcomponents/Options";
 
 const ProjectSection = () => {
   const options = [

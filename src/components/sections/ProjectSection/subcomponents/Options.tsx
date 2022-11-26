@@ -11,7 +11,7 @@ const Options = ({ options }: OptionsProps) => {
   return (
     <>
     {(options && options.length) ?
-      <div className="flex flex-row mt-4 p-2 gap-x-4 bg-dark w-fit options-container">
+      <div className="flex flex-row mt-4 p-2 gap-x-4 w-fit options-container">
         {options.map((option : string, idx: number) => (
           <div key={`filter-option-${idx}`}>
             <input
