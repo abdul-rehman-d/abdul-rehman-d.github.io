@@ -16,7 +16,7 @@ const AboutSection = () => {
   return (
     <section className='section-wrapper'>
       <h1 className='section-heading'>About Me</h1>
-      <div className="b-red flex flex-col md:flex-row w-full h-full py-2 lg:py-16 px-0 lg:px-16 justify-center">
+      <div className="b-red flex flex-col md:flex-row w-full h-full pt-2 lg:pt-16 px-0 lg:px-16 justify-center">
         <div className="min-w-fit">
           <Options
             options={options}
