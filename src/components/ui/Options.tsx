@@ -20,13 +20,13 @@ const Options = ({
     <>
     {(options && options.length) ?
       <div className={
-        "flex mt-4 p-2 w-fit gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4 options-container " +
-        (vertical ? 'flex-col items-center ' : 'flex-row flex-wrap ')
+        "flex mt-4 p-2 w-fit gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4 options-container flex-row flex-wrap " +
+        (vertical ? 'md:flex-col md:items-center ' : '')
       }>
         {options.map((option : Option, idx: number) => (
           <div
             key={`filter-option-${idx}`}
-            className={vertical ? 'w-full' : ''}
+            className={vertical ? 'md:w-full' : ''}
           >
             <input
               name={name}
