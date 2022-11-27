@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SideBar() {
   return (
-    <div className="w-1/5 hidden lg:block p-4">
+    <div className="w-1/5 min-w-[20%] hidden lg:block p-4">
       <div className="h-full w-full py-4 px-2 text-white border border-white flex flex-col justify-between">
         <h1 className="text-2xl font-semibold text-center">ard.</h1>
         <div className="text-2xl font-semibold gap-x-2 flex flex-row justify-center">
