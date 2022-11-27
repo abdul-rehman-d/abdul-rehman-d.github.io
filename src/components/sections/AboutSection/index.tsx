@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Options from "../../ui/Options"
+import Options from "@ui/Options"
 
 const AboutSection = () => {
   const options: Option[] = [
