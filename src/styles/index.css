@@ -20,7 +20,7 @@
   }
 
   .options-container > div > label {
-    @apply py-1 px-2 bg-white text-dark font-medium rounded-2xl cursor-pointer;
+    @apply py-1 px-2 bg-white text-dark w-full block text-center font-medium cursor-pointer;
   }
   .options-container > div > input:checked + label {
     @apply bg-primary-400;
