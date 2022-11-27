@@ -20,15 +20,14 @@ const Options = ({
     <>
     {(options && options.length) ?
       <div className={
-        "flex mt-4 p-2 w-fit options-container " +
-        (vertical ? 'flex-col gap-y-4 items-center ' : 'flex-row gap-x-4 ') +
-        (pillShaped ? 'rounded-2xl ' : '')
+        "flex mt-4 p-2 w-fit gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4 options-container " +
+        (vertical ? 'flex-col items-center ' : 'flex-row flex-wrap ')
       }>
         {options.map((option : Option, idx: number) => (
           <div
             key={`filter-option-${idx}`}
             className={vertical ? 'w-full' : ''}
-            >
+          >
             <input
               name={name}
               value={option.value}
@@ -38,7 +37,10 @@ const Options = ({
               type='radio'
               checked={option.value === selected.value}
             />
-            <label htmlFor={`filter-${option.value}`}>
+            <label
+              htmlFor={`filter-${option.value}`}
+              className={(pillShaped ? 'rounded-2xl': '' )}
+            >
               {option.label}
             </label>
           </div>

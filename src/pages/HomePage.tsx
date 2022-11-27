@@ -12,7 +12,7 @@ function HomePage() {
         <SideBar />
         <div className="flex-grow flex flex-col">
           <Navbar />
-          <div className="flex-grow overflow-y-auto">
+          <div className="flex-grow overflow-y-auto custom-scrollbar">
             <HomeSection />
             <AboutSection />
             <ProjectSection />

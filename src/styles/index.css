@@ -25,4 +25,25 @@
   .options-container > div > input:checked + label {
     @apply bg-primary-400;
   }
+
+  /* custom scrollbar from
+    https://codepen.io/devstreak/pen/dMYgeO
+    (Style 3)
+  */
+  .custom-scrollbar::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    @apply bg-dark;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar
+  {
+    width: 6px;
+    @apply bg-dark;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb
+  {
+    @apply bg-primary-400;
+  }
 }
