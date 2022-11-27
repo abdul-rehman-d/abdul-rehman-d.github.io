@@ -6,11 +6,21 @@ declare global {
     label: string,
   }
 
-  type Milestone = {
+  interface Milestone {
     title: string,
     place: string,
     fromDate: string,
     toDate: string,
     description: JSX.Element,
+  }
+  
+  interface Project {
+    id: number,
+    title: string,
+    description: string,
+    sourceCodeLink?: string,
+    livePreviewLink?: string,
+    technologies: string[],
+    type: string[],
   }
 }
