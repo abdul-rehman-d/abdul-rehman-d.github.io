@@ -18,6 +18,7 @@ declare global {
     id: number,
     title: string,
     description: string,
+    thumbnail: string,
     sourceCodeLink?: string,
     livePreviewLink?: string,
     technologies: string[],

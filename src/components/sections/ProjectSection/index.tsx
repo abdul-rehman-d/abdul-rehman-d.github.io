@@ -39,7 +39,7 @@ const ProjectSection = () => {
         vertical={false}
         pillShaped
       />
-      <div>
+      <div className="flex flex-row flex-wrap gap-4 mt-4">
         {projects[selected.value] ?
           projects[selected.value].map((project: Project) => (
             <Project project={project} />
