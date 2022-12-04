@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 type ProjectProps = {
   project: Project,
@@ -5,7 +6,7 @@ type ProjectProps = {
 
 const Project = ({ project }: ProjectProps ) => {
   return (
-    <div className="basis-1/4 max-w-max flex flex-col bg-dark shadow-2xl rounded-lg overflow-hidden cursor-pointer">
+    <Link to={`/project/${project.id}`} className="basis-1/4 max-w-max flex flex-col bg-dark shadow-2xl rounded-lg overflow-hidden cursor-pointer">
       <img src={project.thumbnail} alt="" />
       <div className="flex-grow flex flex-col justify-between">
         <h4 className="font-semibold p-2">{project.title}</h4>
@@ -17,7 +18,7 @@ const Project = ({ project }: ProjectProps ) => {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

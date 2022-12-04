@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Options from "@ui/Options"
-import rawProjects from "./projects";
+import rawProjects from "../../../assets/projects";
 import Project from "./subcomponents/Project";
 
 type projectsObj = {string: Project[];} | any 
