@@ -2,7 +2,7 @@
 const HomeSection = () => {
   
   return (
-    <div className='fill-remaining flex items-center section-wrapper py-0 md:gap-10 relative overflow-hidden'>
+    <div className='fill-remaining flex items-center section-wrapper py-0 md:gap-10 relative overflow-hidden' id="home">
       <div className="flex flex-col p-2 gap-2 text-center md:text-left z-10 bg-dark">
         <p className="text-white text-3xl w-full md:w-fit">Hello, I am</p>
         <h1 className="text-primary-400 text-5xl">Abdul Rehman Daniyal</h1>

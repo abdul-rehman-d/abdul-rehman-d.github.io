@@ -29,7 +29,7 @@ const ProjectSection = () => {
   }, [rawProjects])
 
   return (
-    <section className="section-wrapper">
+    <section className="section-wrapper" id="projects">
       <h1 className="section-heading">Projects</h1>
       {/* <Options
         options={options}
