@@ -1,4 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import { toast } from 'react-toastify';
+import { faDesktop, faMobile, faTablet } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface PreviewProps {
   url: string;
@@ -12,39 +15,77 @@ const Preview = ( { url, title }: PreviewProps ) => {
   const iframeContainerRef = useRef(null)
   const iframeRef = useRef(null)
 
-  useEffect(() => {
-    switch (selectedSize) {
+  const setSize = (size: string | ((prevState: "mobile" | "tablet" | "desktop") => "mobile" | "tablet" | "desktop")) => {
+    const toastObj = {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    };
+    switch (size) {
       case 'mobile':
         if (window.innerWidth < 500) iframeRef.current.width = '100%'
-        else iframeRef.current.width = '375px' 
+        else iframeRef.current.width = '375px'
+        setSelectedSize(size)
         break;
       case 'tablet':
-        if (window.innerWidth < 768) iframeRef.current.width = '100%'
-        else iframeRef.current.width = '786px' 
+        if (window.innerWidth < 500) {
+          toast.error('Cannot select a view that is larger than your current screen size.', toastObj)
+        } else {
+          if (window.innerWidth < 768) iframeRef.current.width = '100%'
+          else iframeRef.current.width = '786px'
+          setSelectedSize(size)
+        }
         break;
       case 'desktop':
-        if (window.innerWidth < 1440) iframeRef.current.width = '100%'
-        else iframeRef.current.width = '1336px' 
+        if (window.innerWidth < 991) {
+          toast.error('Cannot select a view that is larger than your current screen size.', toastObj)
+        } else {
+          if (window.innerWidth < 1440) iframeRef.current.width = '100%'
+          else iframeRef.current.width = '1336px' 
+          setSelectedSize(size)
+        }
         break;
       default:
         break;
     }
-  }, [selectedSize])
+  }
 
   return (
     <div>
-      <div className='flex flex-row justify-end gap-4 px-4 md:px-16 lg:px-64'>
-        <button onClick={() => setSelectedSize('mobile')}>Mobile</button>
-        <button onClick={() => setSelectedSize('tablet')}>Tablet</button>
-        <button onClick={() => setSelectedSize('desktop')}>Desktop</button>
+      <div className='flex flex-row justify-between px-4 md:px-16 lg:px-64'>
+        <p>Select View:</p>
+        <div className='flex flex-row gap-4'>
+          <button
+            onClick={() => setSize('mobile')}
+            className={`${selectedSize==='mobile' ? 'text-primary-400' : ''} hover:text-primary-600`}
+          >
+            <FontAwesomeIcon icon={faMobile} />
+          </button>
+          <button
+            onClick={() => setSize('tablet')}
+            className={`${selectedSize==='tablet' ? 'text-primary-400' : ''} hover:text-primary-600`}
+          >
+            <FontAwesomeIcon icon={faTablet} />
+          </button>
+          <button
+            onClick={() => setSize('desktop')}
+            className={`${selectedSize==='desktop' ? 'text-primary-400' : ''} hover:text-primary-600`}
+          >
+            <FontAwesomeIcon icon={faDesktop} />
+          </button>
+        </div>
       </div>
-      {selectedSize}
-      <div className='flex justify-center px-4 relative' ref={iframeContainerRef}>
+      <div className='flex justify-center py-4 px-4 relative h-[800px]' ref={iframeContainerRef}>
         <iframe
           className={iframeLoading ? 'hidden' : ''}
           src={url}
           title={title}
-          width='100%'
+          width='375px'
           height='100%'
           onLoad={() => setIframeLoading(false)}
           ref={iframeRef}

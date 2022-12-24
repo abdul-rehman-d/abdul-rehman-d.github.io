@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import rawProjects from "../assets/projects";
 import Preview from '../components/Preview';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const ProjectPage = () => {
   // router stuff
@@ -19,7 +21,9 @@ const ProjectPage = () => {
   }, [projectId])
 
   return (
-    <div className="bg-dark relative w-screen min-h-screen text-white py-8 md:py-16 overflow-x-hidden">
+    <>
+    <ToastContainer />
+    <div className="bg-dark relative min-h-screen text-white py-8 md:py-16 overflow-x-hidden">
       <div className="px-4 md:px-16 lg:px-64">
         <button onClick={() => navigate(-1)}>
           Back
@@ -38,6 +42,7 @@ const ProjectPage = () => {
         }
       </main>
     </div>
+    </>
   )
 }
 
