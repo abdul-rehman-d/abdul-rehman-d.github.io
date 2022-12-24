@@ -25,7 +25,7 @@ const ProjectPage = () => {
     <ToastContainer />
     <div className="bg-dark relative min-h-screen text-white py-8 md:py-16 overflow-x-hidden">
       <div className="px-4 md:px-16 lg:px-64">
-        <button onClick={() => navigate(-1)}>
+        <button onClick={() => navigate(-1)} className='primary-button'>
           Back
         </button>
         <div className='flex flex-row justify-between py-4'>
@@ -33,6 +33,20 @@ const ProjectPage = () => {
         </div>
         <div>
           <p>{projectDetails?.description}</p>
+        </div>
+        <div className='flex flex-row gap-4 py-4'>
+          <a
+            href={projectDetails?.sourceCodeLink}
+            className="primary-button"
+          >
+            Source Code
+          </a>
+          <a
+            href={projectDetails?.livePreviewLink}
+            className="primary-button"
+          >
+            Live Demo
+          </a>
         </div>
       </div>
       <main className='py-4'>

@@ -26,23 +26,30 @@
     @apply bg-primary-400;
   }
 
+  .primary-button {
+    @apply py-1 px-2 bg-primary-500 text-white text-center font-medium cursor-pointer text-sm hover:bg-primary-700 hover:text-white;
+  }
+
   /* custom scrollbar from
     https://codepen.io/devstreak/pen/dMYgeO
     (Style 3)
   */
-  .custom-scrollbar::-webkit-scrollbar-track
+  .custom-scrollbar::-webkit-scrollbar-track,
+  html::-webkit-scrollbar-track
   {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     @apply bg-dark;
   }
 
-  .custom-scrollbar::-webkit-scrollbar
+  .custom-scrollbar::-webkit-scrollbar,
+  html::-webkit-scrollbar
   {
     width: 6px;
     @apply bg-dark;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb
+  .custom-scrollbar::-webkit-scrollbar-thumb,
+  html::-webkit-scrollbar-thumb
   {
     @apply bg-primary-400;
   }
