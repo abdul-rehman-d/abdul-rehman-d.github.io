@@ -13,7 +13,7 @@ const ProjectSection = () => {
     {label: 'Landing Pages', value: 'landing-pages'},
   ]
 
-  const [selected, setSelected] = useState(options[0])
+  const [selected, setSelected] = useState(options[options.length-1])
   const [projects, setProjects] = useState<projectsObj>({})
 
   useEffect(() => {
@@ -31,14 +31,14 @@ const ProjectSection = () => {
   return (
     <section className="section-wrapper">
       <h1 className="section-heading">Projects</h1>
-      <Options
+      {/* <Options
         options={options}
         selected={selected}
         setSelected={setSelected}
         name='projects-category-switcher'
         vertical={false}
         pillShaped
-      />
+      /> */}
       <div className="flex flex-row flex-wrap gap-4 mt-4">
         {projects[selected.value] ?
           projects[selected.value].map((project: Project) => (
