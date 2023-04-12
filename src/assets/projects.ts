@@ -1,12 +1,12 @@
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Huddle Landing Page With Single Introductory Section',
+    title: 'URL Shortening API Landing Page',
     description: 'A landing page with a responsive two column layout main section alongside a brand logo header and social icons footer.',
-    thumbnail: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/raw/main/assets/15.jpg',
-    sourceCodeLink: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/tree/main/15_huddle-landing-page-with-single-introductory-section/',
-    livePreviewLink: 'https://abdul-rehman-d.github.io/frontend_mentor_challenges/15_huddle-landing-page-with-single-introductory-section/',
-    technologies: ['HTML', 'CSS'],
+    thumbnail: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/raw/main/assets/16.jpg',
+    sourceCodeLink: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/tree/main/16_url-shortening-api/',
+    livePreviewLink: 'https://abdul-rehman-d.github.io/frontend_mentor_challenges/16_url-shortening-api/',
+    technologies: ['HTML', 'CSS', 'Tailwind'],
     type: ['landing-pages'],
   },
   {
