@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { toast } from 'react-toastify';
+import { ToastOptions, toast } from 'react-toastify';
 import { faDesktop, faMobile, faTablet } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -8,24 +8,26 @@ interface PreviewProps {
   title: string;
 }
 
+const toastObj : ToastOptions = {
+  position: "top-right",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "dark",
+};
+
 const Preview = ( { url, title }: PreviewProps ) => {
   const [selectedSize, setSelectedSize] = useState<'mobile' | 'tablet' | 'desktop'>('mobile')
   const [iframeLoading, setIframeLoading] = useState<boolean>(true)
 
-  const iframeContainerRef = useRef(null)
-  const iframeRef = useRef(null)
+  const iframeContainerRef = useRef<HTMLDivElement>(null)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const setSize = (size: string | ((prevState: "mobile" | "tablet" | "desktop") => "mobile" | "tablet" | "desktop")) => {
-    const toastObj = {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    };
+    if (!iframeContainerRef.current || !iframeRef.current) return
     switch (size) {
       case 'mobile':
         if (window.innerWidth < 500) iframeRef.current.width = '100%'
