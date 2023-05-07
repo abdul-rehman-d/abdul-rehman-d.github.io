@@ -1,21 +1,29 @@
+import React from "react"
 import { NavLink } from "react-router-dom"
 
-function Navbar() {
+function Navbar({ scrollTo } : { scrollTo: (hash: string) => void }) {
+
+  function onClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    e.preventDefault()
+    const hash = e.currentTarget.hash
+    scrollTo(hash.replace('#', ''))
+  }
+
   return (
     <nav className="w-100 bg-dark text-white flex flex-row justify-end items-center py-4 lg:px-32 md:px-16 px-8 relative z-10">
       <ul className="flex flex-row gap-4">
         <li className="cursor-pointer hover:text-primary-400">
-          <NavLink to={{hash: '#home'}}>
+          <NavLink to={{hash: '#home'}} onClick={onClick}>
             Home
           </NavLink>
         </li>
         <li className="cursor-pointer hover:text-primary-400">
-          <NavLink to={{hash: '#about'}}>
+          <NavLink to={{hash: '#about'}} onClick={onClick}>
             About
           </NavLink>
         </li>
         <li className="cursor-pointer hover:text-primary-400">
-          <NavLink to={{hash: '#projects'}}>
+          <NavLink to={{hash: '#projects'}} onClick={onClick}>
             Projects
           </NavLink>
         </li>

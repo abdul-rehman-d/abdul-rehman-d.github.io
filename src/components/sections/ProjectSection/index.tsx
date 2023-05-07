@@ -51,6 +51,6 @@ const ProjectSection = forwardRef<HTMLElement, {}>((props, ref) => {
       </div>
     </section>
   );
-};
+});
 
 export default ProjectSection;
