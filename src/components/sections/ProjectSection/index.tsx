@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react"
+import { forwardRef, useEffect, useState } from "react"
 import Options from "@ui/Options"
 import rawProjects from "../../../assets/projects";
 import Project from "./subcomponents/Project";
 
 type projectsObj = {string: Project[];} | any 
 
-const ProjectSection = () => {
+const ProjectSection = forwardRef<HTMLElement, {}>((props, ref) => {
   const options: Option[] = [
     {label: 'Featured', value: 'featured'},
-    {label: 'Apps', value: 'apps'},
+    // {label: 'Apps', value: 'apps'},
     {label: 'Web Apps', value: 'web-apps'},
-    {label: 'Landing Pages', value: 'landing-pages'},
+    {label: 'Design Implementation', value: 'ui-implementation'},
+    // {label: 'Tools', value: 'tools'},
   ]
 
-  const [selected, setSelected] = useState(options[options.length-1])
+  const [selected, setSelected] = useState<Option>(options[0])
   const [projects, setProjects] = useState<projectsObj>({})
 
   useEffect(() => {
@@ -29,16 +30,16 @@ const ProjectSection = () => {
   }, [rawProjects])
 
   return (
-    <section className="section-wrapper" id="projects">
+    <section className="section-wrapper" id="projects" ref={ref}>
       <h1 className="section-heading">Projects</h1>
-      {/* <Options
+      <Options
         options={options}
         selected={selected}
         setSelected={setSelected}
         name='projects-category-switcher'
         vertical={false}
         pillShaped
-      /> */}
+      />
       <div className="flex flex-row flex-wrap gap-4 mt-4">
         {projects[selected.value] ?
           projects[selected.value].map((project: Project) => (

@@ -1,5 +1,15 @@
 const projects: Project[] = [
   {
+    id: 6,
+    title: 'Twitter Clone',
+    description: 'This is a Twitter Clone made with T3 Stack. It uses tRPC for the endpoints, Next.JS as the framework as well as Prisma and Tailwind.',
+    sourceCodeLink: 'https://github.com/abdul-rehman-d/twitter-clone',
+    thumbnail: 'https://raw.githubusercontent.com/abdul-rehman-d/twitter-clone/main/public/screenshot.png',
+    livePreviewLink: 'https://twitter.abdulrehmandev.me/',
+    technologies: ['TypeScript', 'Nextjs', 'React', 'Tailwind', 'Clerk', 'Postgres', 'Prisma'],
+    type: ['featured', 'web-apps'],
+  },
+  {
     id: 1,
     title: 'URL Shortening API Landing Page',
     description: 'A landing page with a responsive two column layout main section alongside a brand logo header and social icons footer.',
@@ -7,7 +17,7 @@ const projects: Project[] = [
     sourceCodeLink: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/tree/main/16_url-shortening-api/',
     livePreviewLink: 'https://abdul-rehman-d.github.io/frontend_mentor_challenges/16_url-shortening-api/',
     technologies: ['HTML', 'CSS', 'Tailwind'],
-    type: ['landing-pages'],
+    type: ['featured', 'ui-implementation'],
   },
   {
     id: 2,
@@ -17,7 +27,7 @@ const projects: Project[] = [
     sourceCodeLink: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/tree/main/14_ping-coming-soon-page/',
     livePreviewLink: 'https://abdul-rehman-d.github.io/frontend_mentor_challenges/14_ping-coming-soon-page/',
     technologies: ['HTML', 'CSS'],
-    type: ['landing-pages'],
+    type: ['ui-implementation'],
   },
   {
     id: 3,
@@ -27,7 +37,7 @@ const projects: Project[] = [
     sourceCodeLink: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/tree/main/15_huddle-landing-page-with-single-introductory-section/',
     livePreviewLink: 'https://abdul-rehman-d.github.io/frontend_mentor_challenges/15_huddle-landing-page-with-single-introductory-section/',
     technologies: ['HTML', 'CSS'],
-    type: ['landing-pages'],
+    type: ['ui-implementation'],
   },
   {
     id: 4,
@@ -37,7 +47,7 @@ const projects: Project[] = [
     sourceCodeLink: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/tree/main/12_intro-component-with-signup-form/',
     livePreviewLink: 'https://abdul-rehman-d.github.io/frontend_mentor_challenges/12_intro-component-with-signup-form/',
     technologies: ['HTML', 'CSS', 'Javascript'],
-    type: ['landing-pages'],
+    type: ['featured', 'ui-implementation'],
   },
   {
     id: 5,
@@ -47,8 +57,8 @@ const projects: Project[] = [
     thumbnail: 'https://github.com/abdul-rehman-d/frontend_mentor_challenges/raw/main/assets/11.jpg',
     livePreviewLink: 'https://abdul-rehman-d.github.io/frontend_mentor_challenges/11_base-apparel-coming-soon/',
     technologies: ['HTML', 'CSS', 'Javascript'],
-    type: ['landing-pages'],
-  },
+    type: ['ui-implementation'],
+  }
 ]
 
 export default projects
