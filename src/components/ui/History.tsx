@@ -5,7 +5,7 @@ type HistoryProps = {
 
 const History = ({ milestones }: HistoryProps) => {
   return (
-    <ul className="flex flex-col md:w-3/4 gap-y-4">
+    <ul className="flex flex-col gap-y-4">
       {milestones.length ?
         milestones.map((milestone : Milestone) => (
           <li>
