@@ -4,7 +4,6 @@ import AboutSection from "../components/sections/AboutSection"
 import HomeSection from "../components/sections/HomeSection"
 import ProjectSection from "../components/sections/ProjectSection"
 import SideBar from "../components/SideBar"
-import Stars from "../components/Stars"
 
 function HomePage() {
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -52,7 +51,6 @@ function HomePage() {
             <AboutSection ref={aboutRef} />
             <ProjectSection ref={projectsRef} />
           </div>
-          <Stars />
         </div>
       </main>
     </div>
