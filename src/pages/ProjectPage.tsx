@@ -4,6 +4,8 @@ import rawProjects from "../assets/projects";
 import Preview from '../components/Preview';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const ProjectPage = () => {
   // router stuff
@@ -25,8 +27,8 @@ const ProjectPage = () => {
     <ToastContainer />
     <div className="bg-dark relative min-h-screen text-white py-8 md:py-16 overflow-x-hidden">
       <div className="px-4 md:px-16 lg:px-64">
-        <button onClick={() => navigate(-1)} className='primary-button'>
-          Back
+        <button onClick={() => navigate(-1)} className='text-primary-400 text-3xl rounded-full hover:bg-opacity-20 hover:bg-primary-500 aspect-square w-10'>
+          <FontAwesomeIcon icon={faArrowLeft} />
         </button>
         <div className='flex flex-row justify-between py-4'>
           <h2 className='text-4xl font-bold'>{projectDetails?.title}</h2>

@@ -1,4 +1,4 @@
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faBriefcase, faClose, faHome, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
 import { NavLink } from "react-router-dom"
@@ -28,17 +28,17 @@ function Navbar({ scrollTo } : { scrollTo: (hash: string) => void }) {
       <ul className="flex flex-row gap-4">
         <li className="cursor-pointer hover:text-primary-400">
           <NavLink to={{hash: '#home'}} onClick={onClick}>
-            Home
+            <FontAwesomeIcon icon={faHome} />
           </NavLink>
         </li>
         <li className="cursor-pointer hover:text-primary-400">
           <NavLink to={{hash: '#about'}} onClick={onClick}>
-            About
+            <FontAwesomeIcon icon={faUser} />
           </NavLink>
         </li>
         <li className="cursor-pointer hover:text-primary-400">
           <NavLink to={{hash: '#projects'}} onClick={onClick}>
-            Projects
+            <FontAwesomeIcon icon={faBriefcase} />
           </NavLink>
         </li>
       </ul>
