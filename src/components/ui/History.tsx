@@ -11,9 +11,9 @@ const History = ({ milestones }: HistoryProps) => {
           <li>
             <div className="flex flex-row items-center">
               <div className="flex flex-col items-end self-stretch text-right text-sm pr-2 min-w-max">
-                <p className="bg-dark">{milestone.fromDate}</p>
-                <span className="flex-grow block min-h-[2rem] bg-primary-400 w-1 mr-1" />
                 <p className="bg-dark">{milestone.toDate}</p>
+                <span className="flex-grow block min-h-[2rem] bg-primary-400 w-1 mr-1" />
+                <p className="bg-dark">{milestone.fromDate}</p>
               </div>
               <div className="bg-dark">
                 <p className="text-xl">{milestone.title}</p>

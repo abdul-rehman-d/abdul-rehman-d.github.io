@@ -2,10 +2,10 @@ import History from "@ui/History"
 
 const educationHistory: Milestone[] = [
   {
-    title: 'O Level',
-    place: 'Beacon Light Academy',
-    fromDate: 'August 2015',
-    toDate: 'June 2017',
+    title: "Bachelor's of Science in Computer Science",
+    place: 'Iqra University',
+    fromDate: 'August 2022',
+    toDate: 'Present',
     description: <></>
   },
   {
@@ -16,10 +16,10 @@ const educationHistory: Milestone[] = [
     description: <></>
   },
   {
-    title: "Bachelor's of Science in Computer Science",
-    place: 'Iqra University',
-    fromDate: 'August 2022',
-    toDate: 'Present',
+    title: 'O Level',
+    place: 'Beacon Light Academy',
+    fromDate: 'August 2015',
+    toDate: 'June 2017',
     description: <></>
   },
 ]

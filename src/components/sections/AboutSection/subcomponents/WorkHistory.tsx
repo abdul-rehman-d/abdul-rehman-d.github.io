@@ -2,22 +2,6 @@ import History from "@ui/History"
 
 const workHistory: Milestone[] = [
   {
-    title: 'Freelance Developer',
-    place: 'Self Employed',
-    fromDate: 'Jan 2022',
-    toDate: 'July 2022',
-    description: (
-      <div>
-        <h4 className="bg-dark">Details:-</h4>
-        <ul className="bg-dark list-disc pl-4">
-          <li>Worked on various projects involving different domains and programming languages, primarily focusing on Python.</li>
-          <li>Gained understanding of computer science fields like Socket Programming, Database Design, and Desktop App Development.</li>
-          <li>Developed strong project management skills, including setting timelines, meeting deadlines, and collaborating with clients effectively.</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
     title: 'Frontend Developer',
     place: 'Symits',
     fromDate: 'July 2022',
@@ -35,7 +19,23 @@ const workHistory: Milestone[] = [
         </ul>
       </div>
     ),
-  }
+  },
+  {
+    title: 'Freelance Developer',
+    place: 'Self Employed',
+    fromDate: 'Jan 2022',
+    toDate: 'July 2022',
+    description: (
+      <div>
+        <h4 className="bg-dark">Details:-</h4>
+        <ul className="bg-dark list-disc pl-4">
+          <li>Worked on various projects involving different domains and programming languages, primarily focusing on Python.</li>
+          <li>Gained understanding of computer science fields like Socket Programming, Database Design, and Desktop App Development.</li>
+          <li>Developed strong project management skills, including setting timelines, meeting deadlines, and collaborating with clients effectively.</li>
+        </ul>
+      </div>
+    ),
+  },
 ]
 
 const WorkHistory = () => {
