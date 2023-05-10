@@ -1,14 +1,29 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClose, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useSidebarStore from "../store";
+import { useState } from "react";
 
 function SideBar() {
-  const show = useSidebarStore((state) => state.sidebarShow);
+  const [ show, setShow ] = useState(false);
+
+  function toggleShow() { setShow(curr => !curr) }
 
   return (
+    <>
+    {(window.innerWidth <= 991) && (
+      <div
+        className="fixed top-0 left-0 w-16 h-16 py-4 px-6 z-50 text-white text-3xl"
+        onClick={toggleShow}
+      >
+        {
+        show
+        ? <FontAwesomeIcon icon={faClose} />
+        : <FontAwesomeIcon icon={faBars} />
+        } 
+      </div>
+    )}
     <div
-      className="lg:w-1/5 lg:min-w-[20%] bg-dark top-10 min-h-screen absolute lg:static translate-x-[-100%] lg:translate-x-0 p-4 transition-all duration-500 z-50"
+      className="lg:w-1/5 lg:min-w-[20%] bg-dark absolute lg:sticky left-0 top-0 h-screen translate-x-[-100%] lg:translate-x-0 p-4 transition-all duration-500 z-40"
       style={ ((window.innerWidth <= 991) && show) ? {transform: 'translateX(0)'} : {} }
     >
       <div className="h-full w-full py-4 px-2 text-white border border-white flex flex-col gap-4">
@@ -33,6 +48,7 @@ function SideBar() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
