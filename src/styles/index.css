@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.fill-remaining {
-  height: calc(100vh - 4rem);
-}
-
 .section-wrapper > * {
   z-index: 1;
   position: relative;
