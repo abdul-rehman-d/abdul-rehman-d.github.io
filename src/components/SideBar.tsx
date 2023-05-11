@@ -31,7 +31,7 @@ function SideBar() {
           <img
             src="https://avatars.githubusercontent.com/u/85896478?v=4"
             alt="Abdul Rehman"
-            className="rounded-full h-48 w-48 mx-auto border-4 border-primary-500 mb-2"
+            className="rounded-full h-40 w-40 mx-auto border-4 border-primary-500 mb-2"
           />
           <h1 className="text-2xl font-semibold text-center">ard.</h1>
           <p className="text-center">Full Stack Developer<br/>React | Next | React Native</p>
