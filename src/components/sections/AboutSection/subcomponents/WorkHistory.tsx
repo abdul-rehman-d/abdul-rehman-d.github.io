@@ -1,4 +1,3 @@
-import History from "@ui/History"
 
 const workHistory: Milestone[] = [
   {
@@ -41,8 +40,31 @@ const workHistory: Milestone[] = [
 const WorkHistory = () => {
   return (
     <div className="flex flex-col gap-y-4 p-2">
-      <h2 className="font-semibold text-3xl bg-dark w-fit">Work History</h2>
-      <History milestones={workHistory} />
+      <h2 className="font-semibold text-3xl bg-dark w-fit mx-auto">Work History</h2>
+      <ul className="flex flex-col gap-y-4">
+        {workHistory.length ?
+          workHistory.map((milestone : Milestone) => (
+            <li>
+              <div className="flex flex-col">
+                <div>
+                  <p className="text-lg font-bold">{milestone.place}</p>
+                  <p className="text-xl">{milestone.title}</p>
+                  <p>
+                    <span>{milestone.toDate}</span>
+                    {' - '}
+                    <span>{milestone.fromDate}</span>
+                  </p>
+                </div>
+                <div className="pl-6 relative">
+                  <span className="block bg-primary-400 w-1 absolute top-0 bottom-0 left-1 rounded-md" />
+                  {milestone.description}
+                </div>
+              </div>
+            </li>
+          ))
+          : null
+        }
+      </ul>
     </div>
   )
 }
