@@ -8,7 +8,7 @@ const HomeSection = forwardRef<HTMLDivElement, {}>((props, ref) => {
         <h1 className="text-primary-400 text-5xl">Abdul Rehman Daniyal</h1>
         <h1 className="text-primary-600 text-3xl w-full md:w-fit">A Frontend Developer</h1>
       </div>
-      <div className="flex-grow md:flex flex-row justify-end hidden">
+      {/* <div className="flex-grow md:flex flex-row justify-end hidden">
         <div className="border-[0.75rem] border-primary-400 flex justify-center items-center w-64 h-64 bg-dark z-10">
           <span
             className={`rounded-full w-40 h-40 bg-primary-500 block relative overflow-hidden
@@ -17,7 +17,7 @@ const HomeSection = forwardRef<HTMLDivElement, {}>((props, ref) => {
             `}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 })
