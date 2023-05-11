@@ -84,7 +84,7 @@ const Preview = ( { url, title }: PreviewProps ) => {
       </div>
       <div className='flex justify-center py-4 px-4 relative h-[800px]' ref={iframeContainerRef}>
         {iframeLoading && (
-          <div className='absolute top-0 left-0 w-full h-full flex justify-center items-center'>
+          <div className='absolute top-0 left-0 w-full h-32 flex justify-center items-center'>
             <p className='text-2xl text-primary-400'>Loading...</p>
           </div>
         )}
