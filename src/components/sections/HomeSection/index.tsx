@@ -6,7 +6,7 @@ const HomeSection = forwardRef<HTMLDivElement, {}>((props, ref) => {
       <div className="flex flex-col p-2 gap-2 text-center md:text-left z-10 bg-dark">
         <p className="text-white text-3xl w-full md:w-fit">Hello, I am</p>
         <h1 className="text-primary-400 text-5xl">Abdul Rehman Daniyal</h1>
-        <h1 className="text-primary-600 text-3xl w-full md:w-fit">A Frontend Developer</h1>
+        <h1 className="text-primary-600 text-3xl w-full md:w-fit">A Full Stack Developer</h1>
       </div>
       {/* <div className="flex-grow md:flex flex-row justify-end hidden">
         <div className="border-[0.75rem] border-primary-400 flex justify-center items-center w-64 h-64 bg-dark z-10">
