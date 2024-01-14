@@ -4,7 +4,7 @@
 
 <div class="iPhone__wrapper">
     <div class="iPhone__main">
-        <img src={frame} alt="frame" class="iPhone__frame" />
+        <img src={frame} alt="frame" class="iPhone__frame" on:load />
         <div class="iPhone__content"></div>
     </div>
 </div>
@@ -14,6 +14,8 @@
         width: 100%;
         max-width: 300px;
         height: 100%;
+
+        opacity: var(--opacity);
     }
     .iPhone__main {
         aspect-ratio: 1398 / 2840;
