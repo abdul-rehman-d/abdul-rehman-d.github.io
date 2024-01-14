@@ -1,4 +1,4 @@
-const projects: Project[] = [
+const projects = [
   {
     id: 6,
     title: 'Twitter Clone',
