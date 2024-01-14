@@ -13,7 +13,7 @@
   <div class="container__inner">
     <IPhone on:load={onLoad} --opacity={loading ? 0 : 1} />
     {#if loading}
-      <Loader size={25} />
+      <Loader />
     {/if}
   </div>
 </main>
