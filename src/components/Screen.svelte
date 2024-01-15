@@ -33,7 +33,7 @@
 
     .app_icon {
         background-color: #1c1c1e;
-        border-radius: 10px;
+        border-radius: 15px;
         aspect-ratio: 1;
     }
 </style>
