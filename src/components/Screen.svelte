@@ -1,12 +1,10 @@
 <script lang="ts">
-    export let color: string | undefined = "#ff3a3030";
-
     let apps = Array(4 * 5)
         .fill(0)
         .map((_, i) => `App ${i + 1}`);
 </script>
 
-<div class="iPhone__page" style="background-color: {color};">
+<div class="iPhone__page">
     <div class="iPhone__page__apps_container">
         {#each apps as app}
             <div class="app_icon"></div>

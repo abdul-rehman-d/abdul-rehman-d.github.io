@@ -12,22 +12,26 @@
     let sliderWidth: number | string | undefined;
     let sliderHeight: number | undefined;
 
-    const screens = ["#ff3a3030", "#ffcc0030", "#007aff30"];
+    const screens = [1, 2, 3];
 
     onMount(() => {
         if (swiperEl !== undefined) {
             Object.assign(swiperEl, {
                 slidesPerView: "auto",
                 grabCursor: true,
+                speed: 700,
                 effect: "creative",
                 creativeEffect: {
                     prev: {
                         shadow: true,
+                        opacity: 0,
                         translate: [0, 0, -400],
                     },
                     next: {
+                        shadow: true,
                         translate: ["100%", 0, 0],
                     },
+                    shadowPerProgress: true,
                 },
             });
             swiperEl.initialize();
@@ -57,7 +61,7 @@
                             style="height: {sliderHeight}px; width: {sliderWidth}px;"
                         >
                             <div class="screen">
-                                <Screen color={screen} />
+                                <Screen />
                             </div>
                         </swiper-slide>
                     {/each}
