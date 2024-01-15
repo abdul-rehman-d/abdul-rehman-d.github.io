@@ -4,6 +4,7 @@
 
     import frame from "../assets/images/frame.png";
     import Topbar from "./Topbar.svelte";
+    import Dock from "./Dock.svelte";
     import Screen from "./Screen.svelte";
 
     let swiperEl: SwiperContainer | undefined;
@@ -62,7 +63,10 @@
                     {/each}
                 </swiper-container>
             </div>
-            <div class="iPhone__bottombar"></div>
+
+            <div class="iPhone__dock">
+                <Dock />
+            </div>
         </div>
     </div>
 </div>
@@ -110,14 +114,22 @@
         background-image: url(../assets/wallpapers/light-6.png);
         background-size: cover;
     }
+    .iPhone__topbar {
+        flex-basis: 40px;
+        flex-shrink: 0;
+
+        display: flex;
+    }
 
     .iPhone__screen {
         flex-grow: 1;
         align-self: stretch;
     }
 
-    .iPhone__bottombar {
-        flex-basis: 80px;
+    .iPhone__dock {
+        flex-basis: 102px;
+
+        display: flex;
     }
 
     .screen {
