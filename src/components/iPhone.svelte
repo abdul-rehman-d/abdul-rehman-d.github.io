@@ -4,13 +4,14 @@
 
     import frame from "../assets/images/frame.png";
     import Topbar from "./Topbar.svelte";
+    import Screen from "./Screen.svelte";
 
     let swiperEl: SwiperContainer | undefined;
     let sliderContainer: HTMLDivElement | undefined;
     let sliderWidth: number | string | undefined;
     let sliderHeight: number | undefined;
 
-    const screens = ["red", "yellow", "blue"];
+    const screens = ["#ff3a3030", "#ffcc0030", "#007aff30"];
 
     onMount(() => {
         if (swiperEl !== undefined) {
@@ -48,9 +49,12 @@
                 <swiper-container init={false} bind:this={swiperEl}>
                     {#each screens as screen}
                         <swiper-slide
+                            key={screen}
                             style="height: {sliderHeight}px; width: {sliderWidth}px;"
                         >
-                            <div class="screen {screen}"></div>
+                            <div class="screen">
+                                <Screen color={screen} />
+                            </div>
                         </swiper-slide>
                     {/each}
                 </swiper-container>
@@ -116,14 +120,7 @@
     .screen {
         width: 100%;
         height: 100%;
-    }
-    .red {
-        background-color: #ff3a3030;
-    }
-    .yellow {
-        background-color: #ffcc0030;
-    }
-    .blue {
-        background-color: #007aff30;
+
+        display: flex;
     }
 </style>
