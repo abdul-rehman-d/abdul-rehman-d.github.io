@@ -13,7 +13,8 @@
 
 <style>
     .iPhone__topbar {
-        flex-basis: 40px;
+        flex-grow: 1;
+        align-self: stretch;
 
         display: flex;
         align-items: center;

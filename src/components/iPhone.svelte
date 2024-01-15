@@ -44,7 +44,10 @@
     <div class="iPhone__main">
         <img src={frame} alt="frame" class="iPhone__frame" on:load />
         <div class="iPhone__content">
-            <Topbar />
+            <div class="iPhone__topbar">
+                <Topbar />
+            </div>
+
             <div class="iPhone__screen" bind:this={sliderContainer}>
                 <swiper-container init={false} bind:this={swiperEl}>
                     {#each screens as screen}
