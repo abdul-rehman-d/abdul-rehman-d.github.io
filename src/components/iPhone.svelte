@@ -1,8 +1,9 @@
 <script lang="ts">
     import { type SwiperContainer } from "swiper/element/bundle";
     import { onMount } from "svelte";
+
     import frame from "../assets/images/frame.png";
-    import statusBarRightIcons from "../assets/icons/status-bar-right-icons.png";
+    import Topbar from "./Topbar.svelte";
 
     let swiperEl: SwiperContainer | undefined;
     let sliderContainer: HTMLDivElement | undefined;
@@ -42,7 +43,7 @@
     <div class="iPhone__main">
         <img src={frame} alt="frame" class="iPhone__frame" on:load />
         <div class="iPhone__content">
-            <div class="iPhone__topbar"></div>
+            <Topbar />
             <div class="iPhone__screen" bind:this={sliderContainer}>
                 <swiper-container init={false} bind:this={swiperEl}>
                     {#each screens as screen}
@@ -101,10 +102,6 @@
 
         background-image: url(../assets/wallpapers/light-6.png);
         background-size: cover;
-    }
-
-    .iPhone__topbar {
-        flex-basis: 40px;
     }
 
     .iPhone__screen {
