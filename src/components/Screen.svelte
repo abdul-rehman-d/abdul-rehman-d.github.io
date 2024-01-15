@@ -1,7 +1,7 @@
 <script lang="ts">
     export let color: string | undefined = "#ff3a3030";
 
-    let apps = Array(4 * 6)
+    let apps = Array(4 * 5)
         .fill(0)
         .map((_, i) => `App ${i + 1}`);
 </script>
