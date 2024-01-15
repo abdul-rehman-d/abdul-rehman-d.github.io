@@ -1,4 +1,8 @@
-<script>
+<script lang="ts">
+  import "swiper/css";
+  import { register } from "swiper/element/bundle";
+  register();
+
   import IPhone from "./components/iPhone.svelte";
   import Loader from "./components/Loader.svelte";
 

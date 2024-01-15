@@ -1,37 +1,60 @@
-<script>
-    import "swiper/css";
-    // import function to register Swiper custom elements
-    import { register } from "swiper/element/bundle";
-    // register Swiper custom elements
-    register();
-    import frame from "../assets/frame.png";
+<script lang="ts">
+    import { type SwiperContainer } from "swiper/element/bundle";
+    import { onMount } from "svelte";
+    import frame from "../assets/images/frame.png";
+    import statusBarRightIcons from "../assets/icons/status-bar-right-icons.png";
 
-    function onBottomClick() {
-        console.log("button click");
-    }
+    let swiperEl: SwiperContainer | undefined;
+    let sliderContainer: HTMLDivElement | undefined;
+    let sliderWidth: number | string | undefined;
+    let sliderHeight: number | undefined;
+
+    const screens = ["red", "yellow", "blue"];
+
+    onMount(() => {
+        if (swiperEl !== undefined) {
+            Object.assign(swiperEl, {
+                slidesPerView: "auto",
+                grabCursor: true,
+                effect: "creative",
+                creativeEffect: {
+                    prev: {
+                        shadow: true,
+                        translate: [0, 0, -400],
+                    },
+                    next: {
+                        translate: ["100%", 0, 0],
+                    },
+                },
+            });
+            swiperEl.initialize();
+        }
+        if (sliderContainer !== undefined) {
+            sliderHeight = sliderContainer.getBoundingClientRect().height;
+            sliderWidth =
+                sliderContainer.parentElement?.getBoundingClientRect().width ??
+                "min(300px, calc(100vw - 2rem))";
+        }
+    });
 </script>
 
 <div class="iPhone__wrapper">
     <div class="iPhone__main">
         <img src={frame} alt="frame" class="iPhone__frame" on:load />
         <div class="iPhone__content">
-            <div class="iPhone__screen">
-                <swiper-container
-                    slides-per-view="auto"
-                    speed={500}
-                    loop={true}
-                >
-                    <swiper-slide>
-                        <div class="screen red"></div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="screen yellow"></div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="screen blue"></div>
-                    </swiper-slide>
+            <div class="iPhone__topbar"></div>
+            <div class="iPhone__screen" bind:this={sliderContainer}>
+                <swiper-container init={false} bind:this={swiperEl}>
+                    {#each screens as screen}
+                        <swiper-slide
+                            style="height: {sliderHeight}px; width: {sliderWidth}px;"
+                        >
+                            <div class="screen {screen}"></div>
+                        </swiper-slide>
+                    {/each}
                 </swiper-container>
             </div>
+            <div class="iPhone__bottombar"></div>
         </div>
     </div>
 </div>
@@ -61,7 +84,6 @@
     .iPhone__content {
         z-index: 1;
         position: absolute;
-        background-color: #21222c;
         top: 13px;
         left: 17px;
         right: 13px;
@@ -74,27 +96,37 @@
         overflow: hidden;
 
         display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        background-image: url(../assets/wallpapers/light-6.png);
+        background-size: cover;
+    }
+
+    .iPhone__topbar {
+        flex-basis: 40px;
     }
 
     .iPhone__screen {
         flex-grow: 1;
         align-self: stretch;
+    }
 
-        /* display: grid;
-        place-items: center; */
+    .iPhone__bottombar {
+        flex-basis: 80px;
     }
 
     .screen {
-        width: min(300px, calc(100vw - 2rem));
-        aspect-ratio: 1398 / 2840;
+        width: 100%;
+        height: 100%;
     }
     .red {
-        background-color: red;
+        background-color: #ff3a3030;
     }
     .yellow {
-        background-color: yellow;
+        background-color: #ffcc0030;
     }
     .blue {
-        background-color: blue;
+        background-color: #007aff30;
     }
 </style>
