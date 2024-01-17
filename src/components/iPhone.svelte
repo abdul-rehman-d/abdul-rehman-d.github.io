@@ -4,43 +4,50 @@
 
     import frame from "../assets/images/frame.png";
     import Topbar from "./Topbar.svelte";
-    import Dock from "./Dock.svelte";
-    import Screen from "./Screen.svelte";
+
+    import WidgetsCenter from "./WidgetsCenter.svelte";
+    import HomeScreen from "./HomeScreen.svelte";
+    import AppLibrary from "./AppLibrary.svelte";
 
     let swiperEl: SwiperContainer | undefined;
     let sliderContainer: HTMLDivElement | undefined;
     let sliderWidth: number | string | undefined;
     let sliderHeight: number | undefined;
 
-    const screens = [1, 2, 3];
+    const screens = [WidgetsCenter, HomeScreen, AppLibrary];
 
     onMount(() => {
+        if (sliderContainer !== undefined) {
+            sliderHeight = sliderContainer.getBoundingClientRect().height;
+            sliderWidth =
+                sliderContainer.parentElement?.getBoundingClientRect().width ??
+                "min(300px, calc(100vw - 2rem))";
+        }
+
         if (swiperEl !== undefined) {
             Object.assign(swiperEl, {
                 slidesPerView: "auto",
                 grabCursor: true,
                 speed: 700,
                 effect: "creative",
+                initialSlide: 1,
+                parallax: true,
                 creativeEffect: {
+                    prespective: true,
                     prev: {
                         shadow: true,
-                        opacity: 0,
-                        translate: [0, 0, -400],
+                        translate: ["-100%", 0, 400],
+                        scale: 0.5,
                     },
                     next: {
                         shadow: true,
-                        translate: ["100%", 0, 0],
+                        translate: ["100%", 0, 400],
+                        scale: 0.5,
                     },
                     shadowPerProgress: true,
                 },
             });
             swiperEl.initialize();
-        }
-        if (sliderContainer !== undefined) {
-            sliderHeight = sliderContainer.getBoundingClientRect().height;
-            sliderWidth =
-                sliderContainer.parentElement?.getBoundingClientRect().width ??
-                "min(300px, calc(100vw - 2rem))";
         }
     });
 </script>
@@ -55,9 +62,9 @@
 
             <div class="iPhone__screen" bind:this={sliderContainer}>
                 <swiper-container init={false} bind:this={swiperEl}>
-                    {#each screens as screen}
+                    {#each screens as Screen}
                         <swiper-slide
-                            key={screen}
+                            key={Screen}
                             style="height: {sliderHeight}px; width: {sliderWidth}px;"
                         >
                             <div class="screen">
@@ -66,10 +73,6 @@
                         </swiper-slide>
                     {/each}
                 </swiper-container>
-            </div>
-
-            <div class="iPhone__dock">
-                <Dock />
             </div>
         </div>
     </div>
@@ -128,12 +131,6 @@
     .iPhone__screen {
         flex-grow: 1;
         align-self: stretch;
-    }
-
-    .iPhone__dock {
-        flex-basis: 102px;
-
-        display: flex;
     }
 
     .screen {
