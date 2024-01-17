@@ -8,11 +8,15 @@
     import WidgetsCenter from "./WidgetsCenter.svelte";
     import HomeScreen from "./HomeScreen.svelte";
     import AppLibrary from "./AppLibrary.svelte";
+  import type Swiper from "swiper";
+  import type { SwiperOptions } from "swiper/types";
 
     let swiperEl: SwiperContainer | undefined;
     let sliderContainer: HTMLDivElement | undefined;
     let sliderWidth: number | string | undefined;
     let sliderHeight: number | undefined;
+
+    let interleaveOffset = 0.5;
 
     const screens = [WidgetsCenter, HomeScreen, AppLibrary];
 
@@ -25,28 +29,32 @@
         }
 
         if (swiperEl !== undefined) {
-            Object.assign(swiperEl, {
+            const opts: SwiperOptions = {
                 slidesPerView: "auto",
                 grabCursor: true,
                 speed: 700,
-                effect: "creative",
                 initialSlide: 1,
-                parallax: true,
-                creativeEffect: {
-                    prespective: true,
-                    prev: {
-                        shadow: true,
-                        translate: ["-100%", 0, 400],
-                        scale: 0.5,
+                // parallax: true,
+                // creativeEffect: {
+                //     perspective: true,
+                //     prev: {
+                //         shadow: true,
+                //         translate: ["-100%", 0, 400],
+                //         scale: 0.5,
+                //     },
+                //     next: {
+                //         shadow: true,
+                //         translate: ["100%", 0, 400],
+                //         scale: 0.5,
+                //     },
+                //     shadowPerProgress: true,
+                // },
+                on: {
+                    progress(swiper, progress) {
                     },
-                    next: {
-                        shadow: true,
-                        translate: ["100%", 0, 400],
-                        scale: 0.5,
-                    },
-                    shadowPerProgress: true,
-                },
-            });
+                }
+            };
+            Object.assign(swiperEl, opts);
             swiperEl.initialize();
         }
     });
