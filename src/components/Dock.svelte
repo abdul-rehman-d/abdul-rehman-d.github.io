@@ -1,5 +1,5 @@
 <script lang="ts">
-    import AppIcon from "./AppIcon.svelte";
+    import AppIcon from "./AppIcon/AppIcon.svelte";
     import { DOCK_APPS } from "../data/apps";
 </script>
 

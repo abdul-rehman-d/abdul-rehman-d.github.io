@@ -1,6 +1,6 @@
 <script lang="ts">
     import Dock from "./Dock.svelte";
-    import AppIcon from "./AppIcon.svelte";
+    import AppIcon from "./AppIcon/AppIcon.svelte";
 
     import { HOME_SCREEN_1_APPS } from "../data/apps";
 </script>
