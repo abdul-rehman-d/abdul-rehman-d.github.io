@@ -36,9 +36,10 @@
         effect: "creative",
         on: {
             progress(swiper, progress) {
-                swiper.slides[1].style.filter = `blur(${
-                    Math.abs(progress - 0.5) * 30
-                }px)`;
+                const blurOnHome = `blur(${Math.abs(progress - 0.5) * 30}px)`;
+                const blurOnSides = `blur(${Math.abs(progress - 0.5) * 5}px)`;
+
+                swiper.slides[1].style.filter = blurOnHome;
 
                 let homeScreenTranslate = {
                     x: "0px",
@@ -63,6 +64,9 @@
                     getTranslateString(homeScreenTranslate);
                 swiper.slides[2].style.translate =
                     getTranslateString(appLibraryTranslate);
+
+                swiper.slides[2].style.backdropFilter = blurOnSides;
+                swiper.slides[0].style.backdropFilter = blurOnSides;
             },
         },
     };
