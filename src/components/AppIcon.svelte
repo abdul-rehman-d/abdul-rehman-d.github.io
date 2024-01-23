@@ -31,8 +31,7 @@
 
     .app_icon__icon {
         width: 100%;
-        /* background-color: #1c1c1e; */
-        border-radius: 15px;
+        border-radius: var(--roundness, 15px);
         aspect-ratio: 1;
         overflow: hidden;
     }
