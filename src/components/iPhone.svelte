@@ -151,7 +151,7 @@
         flex-direction: column;
         align-items: stretch;
 
-        background-image: url(../assets/wallpapers/light-6.png);
+        background-image: url(../assets/wallpapers/light-12.png);
         background-size: cover;
     }
     .iPhone__topbar {
