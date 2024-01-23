@@ -5,14 +5,13 @@
 
     import { onMount } from "svelte";
 
-    import frame from "../assets/images/frame.png";
-
     import Topbar from "./Topbar.svelte";
     import WidgetsCenter from "./WidgetsCenter.svelte";
     import HomeScreen from "./HomeScreen.svelte";
     import AppLibrary from "./AppLibrary.svelte";
 
     import { getTranslateString } from "../utils/formatters";
+    import { images } from "../theme";
 
     // ****** LOGIC ******
     let swiperEl: SwiperContainer | undefined;
@@ -38,7 +37,7 @@
         on: {
             progress(swiper, progress) {
                 swiper.slides[1].style.filter = `blur(${
-                    Math.abs(progress - 0.5) * 20
+                    Math.abs(progress - 0.5) * 30
                 }px)`;
 
                 let homeScreenTranslate = {
@@ -88,7 +87,7 @@
 
 <div class="iPhone__wrapper">
     <div class="iPhone__main">
-        <img src={frame} alt="frame" class="iPhone__frame" on:load />
+        <img src={images.frame} alt="frame" class="iPhone__frame" on:load />
         <div class="iPhone__content">
             <div class="iPhone__topbar">
                 <Topbar />

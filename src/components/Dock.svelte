@@ -1,26 +1,11 @@
 <script lang="ts">
-    import phone from "../assets/icons/phone.png";
-    import messages from "../assets/icons/messages.png";
-
     import AppIcon from "./AppIcon.svelte";
-
-    let apps: TApp[] = [
-        {
-            icon: phone,
-            name: "Phone",
-            size: "1x1",
-        },
-        {
-            icon: messages,
-            name: "Messages",
-            size: "1x1",
-        },
-    ];
+    import { DOCK_APPS } from "../data/apps";
 </script>
 
 <div class="iPhone__dock">
     <div class="iPhone__dock__floating_dock">
-        {#each apps as app}
+        {#each DOCK_APPS as app}
             <AppIcon showLabel={false} {app} />
         {/each}
     </div>
