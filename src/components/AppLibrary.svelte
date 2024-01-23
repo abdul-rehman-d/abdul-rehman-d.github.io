@@ -14,14 +14,25 @@
         {#each APP_LIBRARY_FOLDERS as folder, i}
             <div class="appLibrary__folder">
                 <div class="appLibrary__folder_iconish">
-                    <div class="appLibrary__folder_apps_container">
-                        {#each folder.apps as app, i}
+                    <div class="appLibrary__folder_apps_container grid_4x4">
+                        {#each folder.apps.length <= 4 ? folder.apps : folder.apps.slice(0, 3) as app, i}
                             <AppIcon
                                 {app}
                                 showLabel={false}
                                 --roundness="10px"
                             />
                         {/each}
+                        {#if folder.apps.length > 4}
+                            <div class="grid_4x4" style="--gap: 4px;">
+                                {#each folder.apps.slice(3, 7) as app}
+                                    <AppIcon
+                                        {app}
+                                        showLabel={false}
+                                        --roundness="4px"
+                                    />
+                                {/each}
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 <div class="appLibrary__folder_label">{folder.name}</div>
@@ -94,10 +105,14 @@
 
         margin: 8px;
 
+        --gap: 8px;
+    }
+
+    .grid_4x4 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        gap: 8px;
+        gap: var(--gap, 1px);
     }
 
     .appLibrary__folder_label {

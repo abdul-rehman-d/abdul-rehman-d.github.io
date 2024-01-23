@@ -9,6 +9,17 @@ import github from '../assets/icons/github.webp';
 import X from '../assets/icons/X.webp';
 import mail from '../assets/icons/mail.webp';
 
+import react from '../assets/icons/react.png';
+import next from '../assets/icons/next.jpg';
+import node from '../assets/icons/node.png';
+import express from '../assets/icons/express.jpg';
+import typescript from '../assets/icons/typescript.png';
+import go from '../assets/icons/go.png';
+import python from '../assets/icons/python.webp';
+import git from '../assets/icons/git.png';
+import linux from '../assets/icons/linux.jpeg';
+import docker from '../assets/icons/docker.png';
+
 const icons = {
     appleWallet,
     messages,
@@ -20,6 +31,19 @@ const icons = {
     github,
     X,
     mail,
+
+    technologies: {
+        react,
+        next,
+        node,
+        express,
+        typescript,
+        go,
+        python,
+        git,
+        linux,
+        docker,
+    },
 };
 
 export default icons;

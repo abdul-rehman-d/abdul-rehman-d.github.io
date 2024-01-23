@@ -34,78 +34,73 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
         name: 'Technologies',
         apps: [
             {
-                name: 'React',
-                icon: '',
-                size: '1x1',
-            },
-            {
-                name: 'React Native',
-                icon: '',
+                name: 'React/React Native',
+                icon: icons.technologies.react,
                 size: '1x1',
             },
             {
                 name: 'Next js',
-                icon: '',
+                icon: icons.technologies.next,
                 size: '1x1',
             },
             {
                 name: 'Node js',
-                icon: '',
-                size: '1x1',
-            },
-            {
-                name: 'Express js',
-                icon: '',
+                icon: icons.technologies.node,
                 size: '1x1',
             },
             {
                 name: 'Typescript',
-                icon: '',
+                icon: icons.technologies.typescript,
                 size: '1x1',
             }, {
                 name: 'Go',
-                icon: '',
+                icon: icons.technologies.go,
                 size: '1x1',
             }, {
                 name: 'Python',
-                icon: '',
+                icon: icons.technologies.python,
                 size: '1x1',
             },
             {
                 name: 'Git',
-                icon: '',
+                icon: icons.technologies.git,
                 size: '1x1',
             }, {
                 name: 'Linux',
-                icon: '',
+                icon: icons.technologies.linux,
                 size: '1x1',
             }, {
                 name: 'Docker',
-                icon: '',
+                icon: icons.technologies.docker,
+                size: '1x1',
+            },
+            {
+                name: 'Express js',
+                icon: icons.technologies.express,
                 size: '1x1',
             },
         ]
     },
-    {
-        name: 'Mobile Apps',
-        apps: [
-            {
-                name: 'MedList',
-                icon: '',
-                size: '1x1',
-            },
-        ],
-    },
-    {
-        name: 'Web Apps',
-        apps: [
-            {
-                name: 'Twitter Clone',
-                icon: '',
-                size: '1x1',
-            },
-        ],
-    },
+    // {
+    //     name: 'Mobile Apps',
+    //     apps: [
+    //         {
+    //             name: 'MedList',
+    //             icon: '',
+    //             size: '1x1',
+    //         },
+    //     ],
+    // },
+    // {
+    //     name: 'Web Apps',
+    //     apps: [
+    //         {
+    //             name: 'Twitter Clone',
+    //             icon: '',
+    //             size: '1x1',
+    //         },
+    //     ],
+    // },
 ]
 
 export const HOME_SCREEN_1_APPS: TApp[] = [
