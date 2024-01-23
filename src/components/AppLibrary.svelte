@@ -1,7 +1,7 @@
 <script lang="ts">
     import searchIcon from "../assets/icons/magnifyingglass.png";
     import { APP_LIBRARY_FOLDERS } from "../data/apps";
-    import AppIcon from "./AppIcon.svelte";
+    import AppIcon from "./AppIcon/AppIcon.svelte";
 </script>
 
 <div class="container">

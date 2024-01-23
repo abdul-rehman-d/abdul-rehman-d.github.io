@@ -1,19 +1,23 @@
 <script lang="ts">
+    import AppIconWrapper from "./AppIconWrapper.svelte";
+
     export let app: TApp | undefined;
     export let showLabel: boolean = true;
 </script>
 
 {#if app}
-    <div class="app_icon app_icon__size_{app.size}">
-        <div class="app_icon__icon">
-            {#if app.icon}
-                <img src={app.icon} alt={app.name} />
+    <AppIconWrapper {app}>
+        <div class="app_icon app_icon__size_{app.size}">
+            <div class="app_icon__icon">
+                {#if app.icon}
+                    <img src={app.icon} alt={app.name} />
+                {/if}
+            </div>
+            {#if showLabel}
+                <div class="app_icon__name">{app.name}</div>
             {/if}
         </div>
-        {#if showLabel}
-            <div class="app_icon__name">{app.name}</div>
-        {/if}
-    </div>
+    </AppIconWrapper>
 {/if}
 
 <style>
