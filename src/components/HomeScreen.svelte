@@ -1,11 +1,17 @@
 <script lang="ts">
     import Dock from "./Dock.svelte";
-    import Screen from "./Screen.svelte";
+    import AppIcon from "./AppIcon.svelte";
+
+    let apps: TApp[] = [];
 </script>
 
 <div class="iPhone__homeScreen_container">
     <div class="iPhone__homeScreen_appsContainer">
-        <Screen />
+        <div class="iPhone__homeScreen__apps_container">
+            {#each apps as app}
+                <AppIcon {app} />
+            {/each}
+        </div>
     </div>
     <div class="iPhone__dock">
         <Dock />
@@ -32,5 +38,15 @@
         align-self: stretch;
 
         display: flex;
+    }
+
+    .iPhone__homeScreen__apps_container {
+        padding: 12px 24px;
+
+        flex-grow: 1;
+        height: fit-content;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
     }
 </style>
