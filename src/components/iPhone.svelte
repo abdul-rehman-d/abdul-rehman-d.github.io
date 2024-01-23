@@ -1,59 +1,85 @@
 <script lang="ts">
-    import { type SwiperContainer } from "swiper/element/bundle";
+    // ****** IMPORTS ******
+    import type { SwiperContainer } from "swiper/element/bundle";
+    import type { SwiperOptions } from "swiper/types";
+
     import { onMount } from "svelte";
 
     import frame from "../assets/images/frame.png";
-    import Topbar from "./Topbar.svelte";
 
+    import Topbar from "./Topbar.svelte";
     import WidgetsCenter from "./WidgetsCenter.svelte";
     import HomeScreen from "./HomeScreen.svelte";
     import AppLibrary from "./AppLibrary.svelte";
-  import type Swiper from "swiper";
-  import type { SwiperOptions } from "swiper/types";
 
+    import { getTranslateString } from "../utils/formatters";
+
+    // ****** LOGIC ******
     let swiperEl: SwiperContainer | undefined;
     let sliderContainer: HTMLDivElement | undefined;
-    let sliderWidth: number | string | undefined;
-    let sliderHeight: number | undefined;
+    let sliderWidth: string | undefined;
+    let sliderHeight: string | undefined;
 
-    let interleaveOffset = 0.5;
+    $: style = `height: ${sliderHeight}; width: ${sliderWidth}; transition-property: filter, transform, opacity, height, translate;`;
 
-    const screens = [WidgetsCenter, HomeScreen, AppLibrary];
+    const screens = [
+        { Component: WidgetsCenter, key: "widgets" },
+        { Component: HomeScreen, key: "home" },
+        { Component: AppLibrary, key: "app-lib" },
+    ];
+
+    const opts: SwiperOptions = {
+        slidesPerView: "auto",
+        grabCursor: true,
+        speed: 700,
+        initialSlide: 1,
+        touchReleaseOnEdges: true,
+        effect: "creative",
+        on: {
+            progress(swiper, progress) {
+                swiper.slides[1].style.filter = `blur(${
+                    Math.abs(progress - 0.5) * 20
+                }px)`;
+
+                let homeScreenTranslate = {
+                    x: "0px",
+                    y: "0px",
+                    z: `-${Math.abs(progress - 0.5) * 200}px`,
+                };
+                let widgetCenterTranslate = {
+                    x: `-${(progress / 0.5) * 100}%`,
+                    y: "0px",
+                    z: "0px",
+                };
+                let appLibraryTranslate = {
+                    x: `${((1 - progress) / 0.5) * 100}%`,
+                    y: "0px",
+                    z: "0px",
+                };
+
+                swiper.slides[0].style.translate = getTranslateString(
+                    widgetCenterTranslate,
+                );
+                swiper.slides[1].style.translate =
+                    getTranslateString(homeScreenTranslate);
+                swiper.slides[2].style.translate =
+                    getTranslateString(appLibraryTranslate);
+            },
+        },
+    };
 
     onMount(() => {
         if (sliderContainer !== undefined) {
-            sliderHeight = sliderContainer.getBoundingClientRect().height;
-            sliderWidth =
-                sliderContainer.parentElement?.getBoundingClientRect().width ??
-                "min(300px, calc(100vw - 2rem))";
+            const height = sliderContainer.getBoundingClientRect().height;
+            const width =
+                sliderContainer.parentElement?.getBoundingClientRect()?.width;
+            sliderHeight = `${height}px`;
+            sliderWidth = width
+                ? `${width}px`
+                : "min(300px, calc(100vw - 2rem))";
         }
 
         if (swiperEl !== undefined) {
-            const opts: SwiperOptions = {
-                slidesPerView: "auto",
-                grabCursor: true,
-                speed: 700,
-                initialSlide: 1,
-                // parallax: true,
-                // creativeEffect: {
-                //     perspective: true,
-                //     prev: {
-                //         shadow: true,
-                //         translate: ["-100%", 0, 400],
-                //         scale: 0.5,
-                //     },
-                //     next: {
-                //         shadow: true,
-                //         translate: ["100%", 0, 400],
-                //         scale: 0.5,
-                //     },
-                //     shadowPerProgress: true,
-                // },
-                on: {
-                    progress(swiper, progress) {
-                    },
-                }
-            };
             Object.assign(swiperEl, opts);
             swiperEl.initialize();
         }
@@ -70,13 +96,10 @@
 
             <div class="iPhone__screen" bind:this={sliderContainer}>
                 <swiper-container init={false} bind:this={swiperEl}>
-                    {#each screens as Screen}
-                        <swiper-slide
-                            key={Screen}
-                            style="height: {sliderHeight}px; width: {sliderWidth}px;"
-                        >
+                    {#each screens as { Component, key }, i}
+                        <swiper-slide {key} {style}>
                             <div class="screen">
-                                <Screen />
+                                <Component />
                             </div>
                         </swiper-slide>
                     {/each}
@@ -93,6 +116,8 @@
         height: 100%;
 
         opacity: var(--opacity);
+
+        user-select: none;
     }
     .iPhone__main {
         aspect-ratio: 1398 / 2840;
