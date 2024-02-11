@@ -30,7 +30,7 @@
     const opts: SwiperOptions = {
         slidesPerView: "auto",
         grabCursor: true,
-        speed: 700,
+        speed: 300,
         initialSlide: 1,
         touchReleaseOnEdges: true,
         effect: "creative",
