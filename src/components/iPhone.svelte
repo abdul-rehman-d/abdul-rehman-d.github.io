@@ -3,7 +3,7 @@
     import type { SwiperContainer } from "swiper/element/bundle";
     import type { SwiperOptions } from "swiper/types";
 
-    import { onMount } from "svelte";
+    import { SvelteComponent, onMount } from "svelte";
 
     import Topbar from "./Topbar.svelte";
     import WidgetsCenter from "./WidgetsCenter.svelte";
@@ -12,12 +12,19 @@
 
     import { getTranslateString } from "../utils/formatters";
     import { images } from "../theme";
+    import { store } from "../store";
 
     // ****** LOGIC ******
+    let OpenedApp: typeof SvelteComponent | undefined | null;
+
     let swiperEl: SwiperContainer | undefined;
     let sliderContainer: HTMLDivElement | undefined;
     let sliderWidth: string | undefined;
     let sliderHeight: string | undefined;
+
+    store.subscribe((apps) => {
+        OpenedApp = apps.find((app) => app.open)?.Component;
+    });
 
     $: style = `height: ${sliderHeight}; width: ${sliderWidth}; transition-property: filter, transform, opacity, height, translate;`;
 
@@ -107,6 +114,11 @@
                         </swiper-slide>
                     {/each}
                 </swiper-container>
+                {#if OpenedApp}
+                    <div class="app-container">
+                        <svelte:component this={OpenedApp} />
+                    </div>
+                {/if}
             </div>
         </div>
     </div>
@@ -167,6 +179,7 @@
     .iPhone__screen {
         flex-grow: 1;
         align-self: stretch;
+        position: relative;
     }
 
     .screen {
@@ -174,5 +187,11 @@
         height: 100%;
 
         display: flex;
+    }
+    .app-container {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        z-index: 10;
     }
 </style>
