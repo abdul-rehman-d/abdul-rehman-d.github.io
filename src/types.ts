@@ -9,3 +9,4 @@ type TFolder = {
     name: string;
     apps: TApp[];
 }
+

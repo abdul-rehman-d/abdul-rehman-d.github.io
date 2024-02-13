@@ -99,7 +99,7 @@
 
             <div class="iPhone__screen" bind:this={sliderContainer}>
                 <swiper-container init={false} bind:this={swiperEl}>
-                    {#each screens as { Component, key }, i}
+                    {#each screens as { Component, key }}
                         <swiper-slide {key} {style}>
                             <div class="screen">
                                 <Component />
