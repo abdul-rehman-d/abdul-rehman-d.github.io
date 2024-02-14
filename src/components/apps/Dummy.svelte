@@ -5,13 +5,13 @@
 <style>
     div {
         flex-grow: 1;
-align-self: stretch;
+        align-self: stretch;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
-    background-color: #000;
-color: #fff;
+        background-color: #000;
+        color: #fff;
     }
 </style>
