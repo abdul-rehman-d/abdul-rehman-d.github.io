@@ -82,26 +82,28 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
             },
         ]
     },
-    // {
-    //     name: 'Mobile Apps',
-    //     apps: [
-    //         {
-    //             name: 'MedList',
-    //             icon: '',
-    //             size: '1x1',
-    //         },
-    //     ],
-    // },
-    // {
-    //     name: 'Web Apps',
-    //     apps: [
-    //         {
-    //             name: 'Twitter Clone',
-    //             icon: '',
-    //             size: '1x1',
-    //         },
-    //     ],
-    // },
+    {
+        name: 'Mobile Apps',
+        apps: [
+            {
+                name: 'MedList',
+                icon: icons.medlist,
+                size: '1x1',
+                external_link: 'https://play.google.com/store/apps/details?id=com.abdulrehmand.MedList'
+            },
+        ],
+    },
+    {
+        name: 'Web Apps',
+        apps: [
+            {
+                name: 'Twitter Clone',
+                icon: icons.X,
+                size: '1x1',
+                external_link: 'https://twitter.abdulrehmandev.me/'
+            },
+        ],
+    },
 ]
 
 export const HOME_SCREEN_1_APPS: TApp[] = [

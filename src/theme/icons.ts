@@ -8,6 +8,7 @@ import linkedin from '../assets/icons/linkedin.webp';
 import github from '../assets/icons/github.webp';
 import X from '../assets/icons/X.webp';
 import mail from '../assets/icons/mail.webp';
+import medlist from '../assets/icons/medlist.png';
 
 import react from '../assets/icons/react.png';
 import next from '../assets/icons/next.jpg';
@@ -31,6 +32,7 @@ const icons = {
     github,
     X,
     mail,
+    medlist,
 
     technologies: {
         react,
