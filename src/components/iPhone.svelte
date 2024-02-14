@@ -2,8 +2,11 @@
     // ****** IMPORTS ******
     import type { SwiperContainer } from "swiper/element/bundle";
     import type { SwiperOptions } from "swiper/types";
+    import type { TouchEventHandler } from "svelte/elements";
+    import type { TransitionConfig } from "svelte/transition";
 
     import { SvelteComponent, onMount } from "svelte";
+    import { cubicIn } from "svelte/easing";
 
     import Topbar from "./Topbar.svelte";
     import WidgetsCenter from "./WidgetsCenter.svelte";
@@ -22,9 +25,74 @@
     let sliderWidth: string | undefined;
     let sliderHeight: string | undefined;
 
+    let touchStart: Touch | null = null;
+    let touchEnd: Touch | null = null;
+
     store.subscribe((apps) => {
         OpenedApp = apps.find((app) => app.open)?.Component;
     });
+
+    type TransitionParams = { duration: number; } | undefined;
+
+    function scale(_: Element, params: TransitionParams): TransitionConfig {
+        const duration = params?.duration;
+        return {
+            duration,
+            css: (t) => {
+                const eased = cubicIn(t);
+                return `
+transform: scale(${eased});
+border-radius: ${100 - (eased * 100)}px;`;
+            },
+        };
+    }
+
+    const onTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
+        if (
+            e.touches.length === e.targetTouches.length &&
+            e.touches.length === 1
+        ) {
+            touchStart = e.touches.item(0);
+        } else {
+            console.log("why is touches length not 1?????");
+        }
+    };
+
+    const onTouchEnd: TouchEventHandler<HTMLDivElement> = () => {
+        if (touchStart === null || touchEnd === null) {
+            console.log("why is touchstart null????");
+            return;
+        }
+
+        if (!OpenedApp) {
+            return;
+        }
+
+        console.log("x", touchStart.clientX, touchEnd?.clientX);
+        console.log("y", touchStart.clientY, touchEnd?.clientY);
+
+        if (touchEnd?.clientY - touchStart.clientY < -100) {
+            console.log("putting all in bg");
+            store.putAllAppsInBG();
+        }
+    };
+
+    const onTouchMove: TouchEventHandler<HTMLDivElement> = (e) => {
+        if (
+            e.touches.length !== e.targetTouches.length ||
+            e.touches.length !== 1
+        ) {
+            console.log("why is touches length not 1?????");
+            return;
+        }
+
+        if (touchStart === null) {
+            console.log("why is touchstart null????");
+            return;
+        }
+
+        touchEnd = e.touches.item(e.touches.length - 1);
+    };
 
     $: style = `height: ${sliderHeight}; width: ${sliderWidth}; transition-property: filter, transform, opacity, height, translate;`;
 
@@ -104,7 +172,13 @@
                 <Topbar />
             </div>
 
-            <div class="iPhone__screen" bind:this={sliderContainer}>
+            <div
+                class="iPhone__screen"
+                bind:this={sliderContainer}
+                on:touchstart={onTouchStart}
+                on:touchmove={onTouchMove}
+                on:touchend={onTouchEnd}
+            >
                 <swiper-container init={false} bind:this={swiperEl}>
                     {#each screens as { Component, key }}
                         <swiper-slide {key} {style}>
@@ -115,7 +189,10 @@
                     {/each}
                 </swiper-container>
                 {#if OpenedApp}
-                    <div class="app-container">
+                    <div
+                        class="app-container"
+                        transition:scale={{ duration: 300 }}
+                    >
                         <svelte:component this={OpenedApp} />
                     </div>
                 {/if}
@@ -193,5 +270,6 @@
         inset: 0;
         display: flex;
         z-index: 10;
+        overflow: hidden;
     }
 </style>

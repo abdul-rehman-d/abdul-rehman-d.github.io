@@ -8,6 +8,17 @@ function createStore() {
     closeApp: (id: string) => {
       update(apps => apps.filter(app => app.id !== id));
     },
+    putAllAppsInBG: () => {
+      update(apps => apps.map(app => {
+        if (app?.open) {
+          return {
+            ...app,
+            open: false,
+          };
+        }
+        return app;
+      }));
+    },
     openApp: (appToOpen: TApp) => {
       update(apps => {
         let found = false;
