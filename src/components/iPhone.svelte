@@ -251,12 +251,14 @@ border-radius: ${100 - (eased * 100)}px;`;
         flex-shrink: 0;
 
         display: flex;
+
+        z-index: 11;
     }
 
     .iPhone__screen {
         flex-grow: 1;
         align-self: stretch;
-        position: relative;
+        /* position: relative; */
     }
 
     .screen {
