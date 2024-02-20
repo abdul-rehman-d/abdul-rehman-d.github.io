@@ -1,5 +1,6 @@
 import { icons, images } from "../theme";
 import Dummy from '../components/apps/Dummy.svelte';
+import Calculator from '../components/apps/Calculator/Calculator.svelte';
 
 export const APP_LIBRARY_FOLDERS: TFolder[] = [
     {
@@ -130,6 +131,13 @@ export const HOME_SCREEN_1_APPS: TApp[] = [
         name: "Wallet",
         size: "1x1",
         Component: Dummy,
+    },
+    {
+        id: "calculator",
+        icon: icons.calculator,
+        name: "Calculator",
+        size: "1x1",
+        Component: Calculator,
     },
 ];
 

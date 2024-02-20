@@ -10,6 +10,7 @@ import github from '../assets/app-icons/github.webp';
 import X from '../assets/app-icons/X.webp';
 import mail from '../assets/app-icons/mail.webp';
 import medlist from '../assets/app-icons/medlist.webp';
+import calculator from '../assets/app-icons/calculator.webp';
 
 import react from '../assets/app-icons/react.webp';
 import next from '../assets/app-icons/next.webp';
@@ -34,6 +35,7 @@ const icons = {
     X,
     mail,
     medlist,
+    calculator,
 
     technologies: {
         react,
