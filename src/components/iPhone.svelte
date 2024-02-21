@@ -25,8 +25,10 @@
     let sliderWidth: string | undefined;
     let sliderHeight: string | undefined;
 
+    let appContainer: HTMLDivElement | undefined;
     let touchStart: Touch | null = null;
     let touchEnd: Touch | null = null;
+    let swipingUp: boolean = false;
 
     store.subscribe((apps) => {
         OpenedApp = apps.find((app) => app.open)?.Component;
@@ -34,7 +36,7 @@
 
     type TransitionParams = { duration: number; } | undefined;
 
-    function scale(_: Element, params: TransitionParams): TransitionConfig {
+    function scaleIn(_: Element, params: TransitionParams): TransitionConfig {
         const duration = params?.duration;
         return {
             duration,
@@ -42,6 +44,26 @@
                 const eased = cubicIn(t);
                 return `
 transform: scale(${eased});
+border-radius: ${100 - (eased * 100)}px;`;
+            },
+        };
+    }
+    function scaleOut(node: Element, params: TransitionParams): TransitionConfig {
+        const duration = params?.duration;
+        const initialTransform: CSSTransformValue = node.computedStyleMap().get("transform");
+        let initialScaleValue: number = 1;
+        if (initialTransform.length) {
+            const initialScale = initialTransform[0].toString();
+            if (initialScale.startsWith("scale(")) {
+                initialScaleValue = parseFloat(initialScale.substring(6).split(", ")[0]) ?? 1;
+            }
+        }
+        return {
+            duration,
+            css: (t) => {
+                const eased = cubicIn(t);
+                return `
+transform: scale(${initialScaleValue * eased});
 border-radius: ${100 - (eased * 100)}px;`;
             },
         };
@@ -75,6 +97,8 @@ border-radius: ${100 - (eased * 100)}px;`;
             console.log("putting all in bg");
             store.putAllAppsInBG();
         }
+        touchStart = null;
+        touchEnd = null;
     };
 
     const onTouchMove: TouchEventHandler<HTMLDivElement> = (e) => {
@@ -91,7 +115,24 @@ border-radius: ${100 - (eased * 100)}px;`;
             return;
         }
 
-        touchEnd = e.touches.item(e.touches.length - 1);
+        const touch = e.touches.item(e.touches.length - 1);
+
+        if (!touch) {
+            // dealing with ts, should never happen
+            return
+        }
+
+        if (!swipingUp) {
+            if (touch?.clientY - touchStart?.clientY < -1) {
+                swipingUp = true;
+            }
+        } else {
+            if (appContainer) {
+                appContainer.style.transform = `scale(${(touch?.clientY / touchStart?.clientY)})`
+            }
+        }
+
+        touchEnd = touch;
     };
 
     $: style = `height: ${sliderHeight}; width: ${sliderWidth}; transition-property: filter, transform, opacity, height, translate;`;
@@ -191,7 +232,9 @@ border-radius: ${100 - (eased * 100)}px;`;
                 {#if OpenedApp}
                     <div
                         class="app-container"
-                        transition:scale={{ duration: 300 }}
+                        in:scaleIn={{ duration: 300 }}
+                        out:scaleOut={{ duration: 300 }}
+                        bind:this={appContainer}
                     >
                         <svelte:component this={OpenedApp} />
                     </div>
@@ -273,5 +316,6 @@ border-radius: ${100 - (eased * 100)}px;`;
         display: flex;
         z-index: 10;
         overflow: hidden;
+        border-radius: 28px;
     }
 </style>
