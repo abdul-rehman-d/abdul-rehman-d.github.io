@@ -28,7 +28,9 @@
     let appContainer: HTMLDivElement | undefined;
     let touchStart: Touch | null = null;
     let touchEnd: Touch | null = null;
-    let swipingUp: boolean = false;
+    let isSwipingUp: boolean = false;
+
+    const THRESHOLD_FOR_DISMISSING_APP = 125;
 
     store.subscribe((apps) => {
         OpenedApp = apps.find((app) => app.open)?.Component;
@@ -93,9 +95,13 @@ border-radius: ${100 - (eased * 100)}px;`;
         console.log("x", touchStart.clientX, touchEnd?.clientX);
         console.log("y", touchStart.clientY, touchEnd?.clientY);
 
-        if (touchEnd?.clientY - touchStart.clientY < -100) {
+        if (touchEnd?.clientY - touchStart.clientY < (-1 * THRESHOLD_FOR_DISMISSING_APP) && isSwipingUp) {
             console.log("putting all in bg");
             store.putAllAppsInBG();
+        } else {
+            if (appContainer) {
+                appContainer.style.transform = "scale(1)"
+            }
         }
         touchStart = null;
         touchEnd = null;
@@ -122,14 +128,19 @@ border-radius: ${100 - (eased * 100)}px;`;
             return
         }
 
-        if (!swipingUp) {
-            if (touch?.clientY - touchStart?.clientY < -1) {
-                swipingUp = true;
+        const lastTouch = touchEnd || touchStart;
+
+        if (!isSwipingUp) {
+            if (touch?.clientY - lastTouch?.clientY < -1) {
+                isSwipingUp = true;
             }
         } else {
-            if (appContainer) {
-                appContainer.style.transform = `scale(${(touch?.clientY / touchStart?.clientY)})`
+            if (touch?.clientY - lastTouch?.clientY > -1) {
+                isSwipingUp = false;
             }
+        }
+        if (appContainer) {
+            appContainer.style.transform = `scale(${(touch?.clientY / touchStart?.clientY)})`
         }
 
         touchEnd = touch;
