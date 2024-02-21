@@ -162,6 +162,7 @@ opacity: ${t}`,
     }
 
     .appLibrary__folder_label {
+        text-align: center;
         font-size: 10px;
         font-weight: 300;
         color: #000000;
