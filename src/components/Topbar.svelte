@@ -31,6 +31,8 @@
         align-items: center;
         gap: 100px;
         padding-inline: 15px;
+
+        color: black;
     }
     .iPhone__topbar > * {
         flex: 1;
