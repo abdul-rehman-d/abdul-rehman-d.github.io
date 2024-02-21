@@ -1,12 +1,13 @@
 <script lang="ts">
     import searchIcon from "../assets/icons/magnifyingglass.png";
+    import SearchIcon from 'virtual:icons/tabler/search';
     import { APP_LIBRARY_FOLDERS } from "../data/apps";
     import Folder from "./Folder.svelte";
 </script>
 
 <div class="container">
     <div class="appLibrary__searchBox">
-        <img src={searchIcon} alt="search" />
+        <SearchIcon />
         <p>App Library</p>
     </div>
 
@@ -38,18 +39,11 @@
         gap: 8px;
 
         padding: 8px 16px;
-    }
-    .appLibrary__searchBox img {
-        width: 16px;
-        height: 16px;
-
-        /* change color: black */
-        filter: invert(1);
+        color: #333;
     }
     .appLibrary__searchBox p {
         font-size: 14px;
-        font-weight: 300;
-        color: #000000;
+        font-weight: 400;
     }
 
     .appLibrary__folders_container {
