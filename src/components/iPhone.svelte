@@ -192,8 +192,8 @@ border-radius: ${100 - (eased * 100)}px;`;
                 swiper.slides[2].style.translate =
                     getTranslateString(appLibraryTranslate);
 
-                swiper.slides[2].style.backdropFilter = blurOnSides;
-                swiper.slides[0].style.backdropFilter = blurOnSides;
+                // swiper.slides[2].style.backdropFilter = blurOnSides;
+                // swiper.slides[0].style.backdropFilter = blurOnSides;
             },
         },
     };
