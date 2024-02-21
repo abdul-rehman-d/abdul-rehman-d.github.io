@@ -95,6 +95,17 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
         ],
     },
     {
+        name: 'Web Apps I\'ve worked on',
+        apps: [
+            {
+                name: 'California',
+                icon: 'https://console.indolj.io/upload/1658409985-Logo-california.png',
+                size: '1x1',
+                external_link: 'https://californiapizza.com.pk/'
+            },
+        ],
+    },
+    {
         name: 'Web Apps',
         apps: [
             {
@@ -118,20 +129,20 @@ export const HOME_SCREEN_1_APPS: TApp[] = [
         name: "Maps",
         size: "2x2",
     },
-    {
-        id: "photo",
-        icon: icons.photos,
-        name: "Photos",
-        size: "1x1",
-        Component: Dummy,
-    },
-    {
-        id: "wallet",
-        icon: icons.appleWallet,
-        name: "Wallet",
-        size: "1x1",
-        Component: Dummy,
-    },
+    // {
+    //     id: "photo",
+    //     icon: icons.photos,
+    //     name: "Photos",
+    //     size: "1x1",
+    //     Component: Dummy,
+    // },
+    // {
+    //     id: "wallet",
+    //     icon: icons.appleWallet,
+    //     name: "Wallet",
+    //     size: "1x1",
+    //     Component: Dummy,
+    // },
     {
         id: "calculator",
         icon: icons.calculator,
