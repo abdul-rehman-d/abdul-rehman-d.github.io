@@ -1,8 +1,11 @@
 <script lang="ts">
     let currentNumStr: string = "0";
+    let prevNumber: number | undefined = undefined;
+    let operationSelected: string = "";
+    let isInsertNewNumberActive: boolean = false;
 
     $: currentNumStrFormatted = formatNum(currentNumStr);
-    $: currentNum = parseInt(currentNumStr);
+    $: currentNum = parseFloat(currentNumStr);
 
     function formatNum(num: string): string {
         return num;
@@ -10,7 +13,14 @@
 
     function onNumberPress(num: string) {
         console.log("num", num);
-        if (currentNumStr === "0") {
+        if (isInsertNewNumberActive) {
+            if (num === ".") {
+                currentNumStr = "0.";
+            } else {
+                currentNumStr = num;
+            }
+            isInsertNewNumberActive = false;
+        } else if (currentNumStr === "0") {
             if (num === ".") {
                 currentNumStr += num;
             } else {
@@ -19,6 +29,41 @@
         } else {
             currentNumStr += num;
         }
+    }
+
+    function onOperationPress(op: string) {
+        if (operationSelected && prevNumber !== undefined) {
+            onCalculate();
+        }
+        isInsertNewNumberActive = true;
+        prevNumber = parseFloat(currentNumStr);
+        if (op !== "=") {
+            operationSelected = op;
+        }
+    }
+
+    function onCalculate() {
+        if (!operationSelected || !prevNumber) {
+            return;
+        }
+        let ans = 0;
+        switch (operationSelected) {
+            case "+":
+                ans = (prevNumber + currentNum);
+                break;
+            case "/":
+                ans = (prevNumber / currentNum);
+                break;
+            case "x":
+                ans = (prevNumber * currentNum);
+                break;
+            case "-":
+                ans = (prevNumber - currentNum);
+                break;
+            default:
+                break;
+        }
+        currentNumStr = ans.toString();
     }
 
     let actions = [
@@ -35,30 +80,12 @@
             onclick: () => {},
         },
     ];
-    let operations = [
-        {
-            label: "/",
-            onclick: () => {},
-        },
-        {
-            label: "x",
-            onclick: () => {},
-        },
-        {
-            label: "-",
-            onclick: () => {},
-        },
-        {
-            label: "+",
-            onclick: () => {},
-        },
-        {
-            label: "=",
-            onclick: () => {},
-        },
-    ];
+    let operations = ["/", "x", "-", "+", "="].map((op) => ({
+        label: op,
+        onclick: () => onOperationPress(op),
+    }));
     let nums = ["9", "8", "7", "6", "5", "4", "3", "2", "1", "0", "."].map(
-        (op) => ({ label: op, onclick: () => onNumberPress(op) }),
+        (num) => ({ label: num, onclick: () => onNumberPress(num) }),
     );
 
     function getStyleFromIdx(idx: number, item: (typeof nums)[0]) {
@@ -81,7 +108,7 @@
         <!-- <p>Calculator</p> -->
         <div class="calc__display">
             <p class="calc__main_ans">
-                {currentNumStr}
+                {currentNumStrFormatted}
             </p>
         </div>
         <div class="calc__buttons_grid">
@@ -91,8 +118,10 @@
                 >
             {/each}
             {#each operations as operation (operation.label)}
-                <button class="operation" on:click={operation.onclick}
-                    >{operation.label}</button
+                <button
+                    class="operation"
+                    class:isActive={operation.label === operationSelected && isInsertNewNumberActive}
+                    on:click={operation.onclick}>{operation.label}</button
                 >
             {/each}
             {#each nums as num, idx (num.label)}
@@ -181,6 +210,10 @@
         color: #fbfbfd;
 
         grid-column-start: 4;
+    }
+    button.operation.isActive {
+        color: #ff9500;
+        background-color: #fbfbfd;
     }
     button.num {
         background: #505050;
