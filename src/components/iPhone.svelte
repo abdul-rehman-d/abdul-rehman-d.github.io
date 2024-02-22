@@ -76,7 +76,12 @@ border-radius: ${100 - (eased * 100)}px;`;
             e.touches.length === e.targetTouches.length &&
             e.touches.length === 1
         ) {
-            touchStart = e.touches.item(0);
+            const bottom = appContainer?.getBoundingClientRect()?.bottom ?? 0;
+            const touch = e.touches.item(0);
+            console.log(bottom - (touch?.clientY ?? 0));
+            if (bottom - (touch?.clientY ?? 0) < 24) {
+                touchStart = e.touches.item(0);
+            }
         } else {
             console.log("why is touches length not 1?????");
         }
@@ -328,5 +333,17 @@ border-radius: ${100 - (eased * 100)}px;`;
         z-index: 10;
         overflow: hidden;
         border-radius: 28px;
+        padding-bottom: 1rem;
+        background-color: black;
+    }
+    .app-container::after {
+        content: '';
+        position: absolute;
+        height: 0.25rem;
+        width: 50%;
+        bottom: 0.5rem;
+        left: 25%;
+        background-color: white;
+        border-radius: 5px;
     }
 </style>
