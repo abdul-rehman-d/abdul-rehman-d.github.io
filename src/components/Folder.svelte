@@ -164,8 +164,8 @@ opacity: ${t}`,
     .appLibrary__folder_label {
         text-align: center;
         font-size: 10px;
-        font-weight: 300;
-        color: #000000;
+        font-weight: 500;
+        color: #1c1c1e;
     }
     .novisible {
         width: 0;
