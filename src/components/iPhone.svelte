@@ -331,10 +331,6 @@ border-radius: ${100 - eased * 100}px;`;
                                 this={showRecents ? "swiper-slide" : "div"}
                                 {style}
                                 class:app-inner-wrapper={showRecents}
-                                on:click={() => {
-                                    showRecents = false;
-
-                                }}
                             >
                                 <div
                                     class="app-inner-container"
