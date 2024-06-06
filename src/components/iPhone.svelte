@@ -22,6 +22,7 @@
     let activeAppIdx: number = -1;
 
     let swiperEl: SwiperContainer | undefined;
+    let recentsSlider: SwiperContainer | HTMLDivElement | undefined;
     let sliderContainer: HTMLDivElement | undefined;
     let sliderWidth: string | undefined;
     let sliderHeight: string | undefined;
@@ -30,15 +31,18 @@
     let touchStart: Touch | null = null;
     let touchEnd: Touch | null = null;
     let isSwipingUp: boolean = false;
+    let showRecents: boolean = false;
 
     const THRESHOLD_FOR_DISMISSING_APP = 125;
 
     store.subscribe((apps) => {
         openedApps = apps;
-        activeAppIdx = apps.findIndex(app => app.open);
+        activeAppIdx = apps.findIndex((app) => app.open);
+        console.log("openedApps", openedApps);
+        console.log("activeAppIdx", activeAppIdx);
     });
 
-    type TransitionParams = { duration: number; } | undefined;
+    type TransitionParams = { duration: number } | undefined;
 
     function scaleIn(_: Element, params: TransitionParams): TransitionConfig {
         const duration = params?.duration;
@@ -48,19 +52,25 @@
                 const eased = cubicIn(t);
                 return `
 transform: scale(${eased});
-border-radius: ${100 - (eased * 100)}px;`;
+border-radius: ${100 - eased * 100}px;`;
             },
         };
     }
-    function scaleOut(node: Element, params: TransitionParams): TransitionConfig {
+    function scaleOut(
+        node: Element,
+        params: TransitionParams,
+    ): TransitionConfig {
         const duration = params?.duration;
         // @ts-ignore
-        const initialTransform: CSSTransformValue = node.computedStyleMap().get("transform");
+        const initialTransform: CSSTransformValue = node
+            .computedStyleMap()
+            .get("transform");
         let initialScaleValue: number = 1;
         if (initialTransform.length) {
             const initialScale = initialTransform[0].toString();
             if (initialScale.startsWith("scale(")) {
-                initialScaleValue = parseFloat(initialScale.substring(6).split(", ")[0]) ?? 1;
+                initialScaleValue =
+                    parseFloat(initialScale.substring(6).split(", ")[0]) ?? 1;
             }
         }
         return {
@@ -69,7 +79,7 @@ border-radius: ${100 - (eased * 100)}px;`;
                 const eased = cubicIn(t);
                 return `
 transform: scale(${initialScaleValue * eased});
-border-radius: ${100 - (eased * 100)}px;`;
+border-radius: ${100 - eased * 100}px;`;
             },
         };
     }
@@ -79,7 +89,9 @@ border-radius: ${100 - (eased * 100)}px;`;
             e.touches.length === e.targetTouches.length &&
             e.touches.length === 1
         ) {
-            const bottom = appContainers[activeAppIdx]?.getBoundingClientRect()?.bottom ?? 0;
+            const bottom =
+                appContainers[activeAppIdx]?.getBoundingClientRect()?.bottom ??
+                0;
             const touch = e.touches.item(0);
             console.log(bottom - (touch?.clientY ?? 0));
             if (bottom - (touch?.clientY ?? 0) < 24) {
@@ -99,23 +111,36 @@ border-radius: ${100 - (eased * 100)}px;`;
         console.log("x", touchStart.clientX, touchEnd?.clientX);
         console.log("y", touchStart.clientY, touchEnd?.clientY);
 
-        console.log("1", touchEnd?.clientY - touchStart.clientY < (-1 * THRESHOLD_FOR_DISMISSING_APP));
+        console.log(
+            "1",
+            touchEnd?.clientY - touchStart.clientY <
+                -1 * THRESHOLD_FOR_DISMISSING_APP,
+        );
         console.log("2", isSwipingUp);
 
-        const hasCrossedThreshold = touchEnd?.clientY - touchStart.clientY < (-1 * THRESHOLD_FOR_DISMISSING_APP);
+        const hasCrossedThreshold =
+            touchEnd?.clientY - touchStart.clientY <
+            -1 * THRESHOLD_FOR_DISMISSING_APP;
 
         if (hasCrossedThreshold && isSwipingUp) {
             if (appContainers[activeAppIdx]) {
                 console.log("putting all in bg");
-                appContainers[activeAppIdx].style.transform = "scale(0)"
+                appContainers[activeAppIdx].style.transform = "scale(0)";
                 store.putAllAppsInBG();
             }
         } else {
             if (hasCrossedThreshold && !isSwipingUp) {
                 console.log("show recents");
-            }
-            if (appContainers[activeAppIdx]) {
-                appContainers[activeAppIdx].style.transform = "scale(1)"
+                appContainers.forEach((appContainer, index) => {
+                    appContainer.style.transform = "";
+                    // if (!sliderWidth) return
+                    // appContainer.style.transform = `scale(0.75) translateX(
+                    //     calc(${sliderWidth} * 0.75 * ${-index})
+                    // )`
+                });
+                // showRecents = true;
+            } else if (appContainers[activeAppIdx]) {
+                appContainers[activeAppIdx].style.transform = "scale(1)";
             }
         }
         touchStart = null;
@@ -140,7 +165,7 @@ border-radius: ${100 - (eased * 100)}px;`;
 
         if (!touch) {
             // dealing with ts, should never happen
-            return
+            return;
         }
 
         const lastTouch = touchEnd || touchStart;
@@ -155,13 +180,19 @@ border-radius: ${100 - (eased * 100)}px;`;
             }
         }
         if (appContainers[activeAppIdx]) {
-            appContainers[activeAppIdx].style.transform = `scale(${(touch?.clientY / touchStart?.clientY)})`
+            appContainers[activeAppIdx].style.transform = `scale(${
+                touch?.clientY / touchStart?.clientY
+            })`;
         }
 
         touchEnd = touch;
     };
 
     $: style = `height: ${sliderHeight}; width: ${sliderWidth}; transition-property: filter, transform, opacity, height, translate;`;
+    $: {
+        console.log("activeAppIdx", activeAppIdx);
+    }
+    $: isAnyAppActive = activeAppIdx !== -1;
 
     const screens = [
         { Component: WidgetsCenter, key: "widgets" },
@@ -213,6 +244,26 @@ border-radius: ${100 - (eased * 100)}px;`;
         },
     };
 
+    const opts2: SwiperOptions = {
+        slidesPerView: 1,
+        grabCursor: true,
+        speed: 300,
+        initialSlide: 1,
+        touchReleaseOnEdges: true,
+        effect: "coverflow",
+        coverflowEffect: {
+            rotate: 0,
+        },
+        on: {
+            progress(swiper, progress) {
+                swiper.slides.forEach((slide, index) => {
+                    const transformX = `calc(${sliderWidth} * 0.75 * ${index})`;
+                    slide.style.transform = `translateX(${transformX})`;
+                });
+            },
+        },
+    };
+
     onMount(() => {
         if (sliderContainer !== undefined) {
             const height = sliderContainer.getBoundingClientRect().height;
@@ -229,6 +280,15 @@ border-radius: ${100 - (eased * 100)}px;`;
             swiperEl.initialize();
         }
     });
+
+    $: {
+        if (recentsSlider !== undefined) {
+            Object.assign(recentsSlider, opts2);
+            if ("initialize" in recentsSlider) {
+                recentsSlider.initialize();
+            }
+        }
+    }
 </script>
 
 <div class="iPhone__wrapper">
@@ -255,17 +315,43 @@ border-radius: ${100 - (eased * 100)}px;`;
                         </swiper-slide>
                     {/each}
                 </swiper-container>
-                {#each openedApps as app, appIdx (`opened-app-${appIdx}`)}
-                    <div
-                        class="app-container"
-                        style="transform: scale({app.open ? 1 : 0});"
-                        in:scaleIn={{ duration: 300 }}
-                        out:scaleOut={{ duration: 300 }}
-                        bind:this={appContainers[appIdx]}
+                <div
+                    class="app-container"
+                    class:active={isAnyAppActive}
+                    class:recents={showRecents}
+                >
+                    <svelte:element
+                        this={showRecents ? "swiper-container" : "div"}
+                        init={false}
+                        bind:this={recentsSlider}
+                        class:recents-apps-slider={showRecents}
                     >
-                        <svelte:component this={app.Component} />
-                    </div>
-                {/each}
+                        {#each openedApps as _, appIdx (`opened-app-${appIdx}`)}
+                            <svelte:element
+                                this={showRecents ? "swiper-slide" : "div"}
+                                {style}
+                                class:app-inner-wrapper={showRecents}
+                                on:click={() => {
+                                    showRecents = false;
+
+                                }}
+                            >
+                                <div
+                                    class="app-inner-container"
+                                    class:active={activeAppIdx === appIdx}
+                                    class:recents={showRecents}
+                                    in:scaleIn={{ duration: 300 }}
+                                    out:scaleOut={{ duration: 300 }}
+                                    bind:this={appContainers[appIdx]}
+                                >
+                                    <svelte:component
+                                        this={openedApps[appIdx].Component}
+                                    />
+                                </div>
+                            </svelte:element>
+                        {/each}
+                    </svelte:element>
+                </div>
             </div>
         </div>
     </div>
@@ -342,17 +428,49 @@ border-radius: ${100 - (eased * 100)}px;`;
         inset: 0;
         display: flex;
         z-index: 10;
-        overflow: hidden;
+        pointer-events: none;
+    }
+    .app-container.recents {
+        backdrop-filter: blur(5px);
+        pointer-events: auto;
+    }
+    .app-container.active {
+        pointer-events: auto;
+    }
+    .app-container swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .app-inner-wrapper {
+        transform: scale(0.7);
+        scale: 0.7;
+    }
+    .recents-apps-slider {
+    }
+    .app-inner-container {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        width: 100%;
         border-radius: 28px;
         padding-bottom: 1rem;
         background-color: black;
         transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        transform: scale(0);
     }
-    .app-container.active {
-        scale: 1;
+    .app-inner-container.active {
+        transform: scale(1);
     }
-    .app-container::after {
-        content: '';
+    .app-inner-container.recents {
+        position: relative;
+        transform: scale(1);
+        padding-bottom: 0;
+        pointer-events: none;
+        aspect-ratio: 270 / 540;
+    }
+    .app-inner-container::after {
+        content: "";
         position: absolute;
         height: 0.25rem;
         width: 50%;
@@ -360,5 +478,8 @@ border-radius: ${100 - (eased * 100)}px;`;
         left: 25%;
         background-color: white;
         border-radius: 5px;
+    }
+    .app-inner-container.recents::after {
+        display: none;
     }
 </style>
