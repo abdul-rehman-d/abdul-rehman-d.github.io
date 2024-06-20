@@ -154,13 +154,13 @@ export const HOME_SCREEN_1_APPS: TApp[] = [
     //     size: "1x1",
     //     Component: Dummy,
     // },
-    {
-        id: "wallet",
-        icon: icons.appleWallet,
-        name: "Wallet",
-        size: "1x1",
-        Component: Dummy,
-    },
+    // {
+    //     id: "wallet",
+    //     icon: icons.appleWallet,
+    //     name: "Wallet",
+    //     size: "1x1",
+    //     Component: Dummy,
+    // },
     {
         id: "calculator",
         icon: icons.calculator,
