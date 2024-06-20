@@ -103,6 +103,24 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                 size: '1x1',
                 external_link: 'https://californiapizza.com.pk/'
             },
+            {
+                name: 'Rehmat e Shereen',
+                icon: 'https://scontent.fkhi17-1.fna.fbcdn.net/v/t39.30808-6/379305415_708654591298005_5298503343706501957_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHwxWq4hz8d_L1DhPpgXhjWcroRI-rnnyZyuhEj6uefJnqu3JVmwhY2DyLYZilCDnnehMicFTrEPNK1jsLwZuRw&_nc_ohc=NfzmbDyZdbcQ7kNvgECJmw3&_nc_ht=scontent.fkhi17-1.fna&oh=00_AYDh8ffYt5lyU2f1BNqsD_Rl3x_HRkqn9ijQaA0b1-h7JQ&oe=6679D69C',
+                size: '1x1',
+                external_link: 'https://order.rehmateshereen.com/'
+            },
+            {
+                name: 'United King',
+                icon: 'https://console.indolj.io/upload/1652698752-uk-1.jpg',
+                size: '1x1',
+                external_link: 'https://www.unitedkingonline.com/'
+            },
+            {
+                name: 'Pie in the Sky',
+                icon: 'https://console.indolj.io/upload/1658775499-Logo.png',
+                size: '1x1',
+                external_link: 'https://order.pieinthesky.com.pk/'
+            },
         ],
     },
     {
