@@ -1,13 +1,52 @@
-import { create } from 'zustand'
+import { writable } from 'svelte/store';
 
-export type Store = {
-  sidebarShow: boolean
-  toggleSidebarShow: () => void
+function createStore() {
+  const { subscribe, update } = writable<TApp[]>([]);
+
+  return {
+    subscribe,
+    closeApp: (id: string) => {
+      update(apps => apps.filter(app => app.id !== id));
+    },
+    putAllAppsInBG: () => {
+      update(apps => apps.map(app => {
+        if (app?.open) {
+          return {
+            ...app,
+            open: false,
+          };
+        }
+        return app;
+      }));
+    },
+    openApp: (appToOpen: TApp) => {
+      update(apps => {
+        let found = false;
+        const mapped = apps.map(app => {
+          if (app.id === appToOpen.id) {
+            found = true;
+            return {
+              ...app,
+              open: true,
+            }
+          } else {
+            return {
+              ...app,
+              open: false,
+            }
+          }
+        })
+        if (!found) {
+          mapped.push({
+            ...appToOpen,
+            open: true,
+          });
+        }
+        console.log('new', mapped);
+        return mapped;
+      });
+    },
+  }
 }
 
-const useSidebarStore = create<Store>((set) => ({
-  sidebarShow: window.innerWidth > 991 ? true : false,
-  toggleSidebarShow: () => set((state) => ({ sidebarShow: !state.sidebarShow })),
-}))
-
-export default useSidebarStore
+export const store = createStore();

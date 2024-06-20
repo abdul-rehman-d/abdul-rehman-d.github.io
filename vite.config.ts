@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import react from '@vitejs/plugin-react'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+import Icons from 'unplugin-icons/vite'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
   plugins: [
-    react(),
-    tsconfigPaths(),
-  ]
+    svelte(),
+    Icons({
+      compiler: 'svelte',
+    }),
+  ],
 })
+

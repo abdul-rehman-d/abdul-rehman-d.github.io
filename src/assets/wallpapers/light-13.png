@@ -1,0 +1,18 @@
+import os
+
+# Get the current working directory
+cwd = os.getcwd()
+
+# loop over all files in the dir
+
+dark_counter = 0
+light_counter = 0
+for file in os.listdir(cwd):
+    # if has the string 'Dark Mode=True' increment the dark counter and rename the file to `dark-{dark_counter}.png`
+    # else increment the light counter and rename the file to `light-{light_counter}.png`
+    if 'Dark Mode=True' in file:
+        os.rename(file, f'dark-{dark_counter+1}.png')
+        dark_counter += 1
+    else:
+        os.rename(file, f'light-{light_counter+1}.png')
+        light_counter += 1
