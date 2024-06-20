@@ -50,6 +50,6 @@
     .app_icon__name {
         font-size: 10px;
         font-weight: 500;
-        color: #1c1c1e;
+        color: var(--textcolor, #1c1c1e);
     }
 </style>

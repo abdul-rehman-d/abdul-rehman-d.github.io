@@ -76,6 +76,7 @@ opacity: ${t}`,
                                 {app}
                                 showLabel={false}
                                 --roundness="4px"
+                                --textcolor="#fff"
                             />
                         </div>
                     {/each}
@@ -118,6 +119,7 @@ opacity: ${t}`,
                     in:receive={{ key: app.name }}
                     out:send={{ key: app.name }}
                     animate:flip
+                    class="appLibrary__folder_expanded__grid_folder"
                 >
                     <AppIcon {app} --roundness="10px" />
                 </div>
@@ -184,12 +186,30 @@ opacity: ${t}`,
         align-items: center;
 
         padding: 24px;
+
+        z-index: 0;
+    }
+    .blurrr {
+        position: absolute;
+
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 1;
     }
     .appLibrary__folder_expanded__grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 10px;
-        z-index: 1;
+        z-index: 2;
+    }
+    .appLibrary__folder_expanded__grid_folder {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     .appLibrary__folder_expanded__grid > * {
         overflow: hidden;
