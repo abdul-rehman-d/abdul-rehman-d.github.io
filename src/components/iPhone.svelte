@@ -391,6 +391,11 @@ border-radius: ${100 - eased * 100}px;`;
                                         this={openedApps[appIdx].Component}
                                     />
                                 </div>
+                                {#if activeAppIdx === appIdx}
+                                    <div class="app-after-container">
+                                        <div class="app-after"></div>
+                                    </div>
+                                {/if}
                             </svelte:element>
                         {/each}
                     </svelte:element>
@@ -512,8 +517,14 @@ border-radius: ${100 - eased * 100}px;`;
         pointer-events: none;
         aspect-ratio: 270 / 540;
     }
-    .app-inner-container::after {
-        content: "";
+    .app-after-container {
+        position: absolute;
+        height: 1rem;
+        width: 100%;
+        bottom: 0;
+        cursor: grab;
+    }
+    .app-after {
         position: absolute;
         height: 0.25rem;
         width: 50%;
