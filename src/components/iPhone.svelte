@@ -2,7 +2,7 @@
     // ****** IMPORTS ******
     import type { SwiperContainer } from "swiper/element/bundle";
     import type { SwiperOptions } from "swiper/types";
-    import type { TouchEventHandler } from "svelte/elements";
+    import type { DragEventHandler, MouseEventHandler, TouchEventHandler } from "svelte/elements";
     import type { TransitionConfig } from "svelte/transition";
 
     import { onMount } from "svelte";
@@ -21,6 +21,8 @@
     let openedApps: TApp[] = [];
     let activeAppIdx: number = -1;
 
+    let isTouchScreenDevice: boolean = false;
+
     let swiperEl: SwiperContainer | undefined;
     let recentsSlider: SwiperContainer | HTMLDivElement | undefined;
     let sliderContainer: HTMLDivElement | undefined;
@@ -28,8 +30,9 @@
     let sliderHeight: string | undefined;
 
     let appContainers: HTMLDivElement[] = [];
-    let touchStart: Touch | null = null;
-    let touchEnd: Touch | null = null;
+    type TouchCustom = { clientX: number, clientY: number };
+    let touchStart: TouchCustom | null = null;
+    let touchEnd: TouchCustom | null = null;
     let isSwipingUp: boolean = false;
     let showRecents: boolean = false;
 
@@ -38,6 +41,9 @@
     store.subscribe((apps) => {
         openedApps = apps;
         activeAppIdx = apps.findIndex((app) => app.open);
+        if (activeAppIdx >= 0 && appContainers[activeAppIdx]) {
+            appContainers[activeAppIdx].style.transform = "scale(1)";
+        }
         console.log("openedApps", openedApps);
         console.log("activeAppIdx", activeAppIdx);
     });
@@ -84,25 +90,20 @@ border-radius: ${100 - eased * 100}px;`;
         };
     }
 
-    const onTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
-        if (
-            e.touches.length === e.targetTouches.length &&
-            e.touches.length === 1
-        ) {
-            const bottom =
-                appContainers[activeAppIdx]?.getBoundingClientRect()?.bottom ??
-                0;
-            const touch = e.touches.item(0);
-            console.log(bottom - (touch?.clientY ?? 0));
-            if (bottom - (touch?.clientY ?? 0) < 24) {
-                touchStart = e.touches.item(0);
-            }
-        } else {
-            console.log("why is touches length not 1?????");
+    const handleDragStart = (touch: TouchCustom) => {
+        const bottom =
+            appContainers[activeAppIdx]?.getBoundingClientRect()?.bottom ??
+            0;
+        console.log(bottom - (touch.clientY ?? 0));
+        if (bottom - (touch.clientY ?? 0) < 24) {
+            touchStart = {
+                clientX: touch.clientX,
+                clientY: touch.clientY,
+            };
         }
-    };
+    }
 
-    const onTouchEnd: TouchEventHandler<HTMLDivElement> = () => {
+    const handleDragEnd = () => {
         if (touchStart === null || touchEnd === null) {
             console.log("why is touchstart null????");
             return;
@@ -145,26 +146,11 @@ border-radius: ${100 - eased * 100}px;`;
         }
         touchStart = null;
         touchEnd = null;
-    };
+    }
 
-    const onTouchMove: TouchEventHandler<HTMLDivElement> = (e) => {
-        if (
-            e.touches.length !== e.targetTouches.length ||
-            e.touches.length !== 1
-        ) {
-            console.log("why is touches length not 1?????");
-            return;
-        }
-
+    const handleDragMove = (touch: TouchCustom) => {
         if (touchStart === null) {
             console.log("why is touchstart null????");
-            return;
-        }
-
-        const touch = e.touches.item(e.touches.length - 1);
-
-        if (!touch) {
-            // dealing with ts, should never happen
             return;
         }
 
@@ -185,7 +171,61 @@ border-radius: ${100 - eased * 100}px;`;
             })`;
         }
 
-        touchEnd = touch;
+        touchEnd = {
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+        };
+    }
+
+    const onTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
+        if (
+            e.touches.length === e.targetTouches.length &&
+            e.touches.length === 1
+        ) {
+            handleDragStart({
+                clientX: e.touches.item(0)?.clientX!,
+                clientY: e.touches.item(0)?.clientY!,
+            });
+        } else {
+            console.log("why is touches length not 1?????");
+        }
+    };
+
+    const onTouchEnd: TouchEventHandler<HTMLDivElement> = () => {
+        handleDragEnd();
+    };
+
+    const onTouchMove: TouchEventHandler<HTMLDivElement> = (e) => {
+        if (
+            e.touches.length !== e.targetTouches.length ||
+            e.touches.length !== 1
+        ) {
+            console.log("why is touches length not 1?????");
+            return;
+        }
+
+        handleDragMove({
+            clientX: e.touches.item(0)?.clientX!,
+            clientY: e.touches.item(0)?.clientY!,
+        });
+    };
+
+    const onMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
+        handleDragStart({
+            clientX: e.clientX,
+            clientY: e.clientY,
+        });
+    };
+
+    const onMouseUp: MouseEventHandler<HTMLDivElement> = () => {
+        handleDragEnd()
+    };
+
+    const onMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
+        handleDragMove({
+            clientX: e.clientX,
+            clientY: e.clientY,
+        });
     };
 
     $: style = `height: ${sliderHeight}; width: ${sliderWidth}; transition-property: filter, transform, opacity, height, translate;`;
@@ -265,6 +305,9 @@ border-radius: ${100 - eased * 100}px;`;
     };
 
     onMount(() => {
+        if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) {
+            isTouchScreenDevice = true;
+        }
         if (sliderContainer !== undefined) {
             const height = sliderContainer.getBoundingClientRect().height;
             const width =
@@ -299,12 +342,16 @@ border-radius: ${100 - eased * 100}px;`;
                 <Topbar />
             </div>
 
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
             <div
                 class="iPhone__screen"
                 bind:this={sliderContainer}
                 on:touchstart={onTouchStart}
-                on:touchmove={onTouchMove}
-                on:touchend={onTouchEnd}
+                on:touchmove={touchStart ? onTouchMove : undefined}
+                on:touchend={touchStart ? onTouchEnd : undefined}
+                on:mousedown={isTouchScreenDevice ? ()=>{} : onMouseDown}
+                on:mousemove={isTouchScreenDevice || !touchStart  ? ()=>{} : onMouseMove}
+                on:mouseup={isTouchScreenDevice || !touchStart ? ()=>{} : onMouseUp}
             >
                 <swiper-container init={false} bind:this={swiperEl}>
                     {#each screens as { Component, key }}
