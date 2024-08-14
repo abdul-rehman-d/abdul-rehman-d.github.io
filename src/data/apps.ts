@@ -1,5 +1,4 @@
 import { icons, images } from "../theme";
-import Dummy from '../components/apps/Dummy.svelte';
 import Calculator from '../components/apps/Calculator/Calculator.svelte';
 
 export const APP_LIBRARY_FOLDERS: TFolder[] = [
@@ -84,7 +83,7 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
         ]
     },
     {
-        name: 'Mobile Apps',
+        name: 'Personal Projects',
         apps: [
             {
                 name: 'MedList',
@@ -92,10 +91,16 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                 size: '1x1',
                 external_link: 'https://play.google.com/store/apps/details?id=com.abdulrehmand.MedList'
             },
+            {
+                name: 'Twitter Clone',
+                icon: icons.XClone,
+                size: '1x1',
+                external_link: 'https://twitter.abdulrehmandev.me/'
+            },
         ],
     },
     {
-        name: 'Web Apps I\'ve worked on',
+        name: 'Projects I\'ve worked on',
         apps: [
             {
                 name: 'California',
@@ -123,17 +128,11 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
             },
         ],
     },
-    {
-        name: 'Web Apps',
-        apps: [
-            {
-                name: 'Twitter Clone',
-                icon: icons.X,
-                size: '1x1',
-                external_link: 'https://twitter.abdulrehmandev.me/'
-            },
-        ],
-    },
+    // {
+    //     name: 'Web Apps',
+    //     apps: [
+    //     ],
+    // },
 ]
 
 export const HOME_SCREEN_1_APPS: TApp[] = [

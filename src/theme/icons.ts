@@ -8,6 +8,7 @@ import photos from '../assets/app-icons/photos.webp';
 import linkedin from '../assets/app-icons/linkedin.webp';
 import github from '../assets/app-icons/github.webp';
 import X from '../assets/app-icons/X.webp';
+import XClone from '../assets/app-icons/x-clone.png';
 import mail from '../assets/app-icons/mail.webp';
 import medlist from '../assets/app-icons/medlist.webp';
 import calculator from '../assets/app-icons/calculator.webp';
@@ -33,6 +34,7 @@ const icons = {
     linkedin,
     github,
     X,
+    XClone,
     mail,
     medlist,
     calculator,
