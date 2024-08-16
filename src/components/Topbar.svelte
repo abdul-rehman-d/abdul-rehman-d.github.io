@@ -4,14 +4,14 @@
     import WifiIcon from 'virtual:icons/material-symbols/wifi-sharp';
     import BarsIcon from 'virtual:icons/ant-design/signal-filled';
 
-    let isAnyOpenOpened: boolean = false;
+    let isLightTheme: boolean = false;
 
     store.subscribe((apps) => {
-        isAnyOpenOpened = apps.findIndex((app) => app.open) > -1;
+        isLightTheme = apps.find((app) => app.open)?.topbarTheme === 'light';
     });
 </script>
 
-<div class="iPhone__topbar" class:iPhone__topbar_light={isAnyOpenOpened}>
+<div class="iPhone__topbar" class:iPhone__topbar_light={isLightTheme}>
     <p class="iPhone__topbar_time">
         9:41
     </p>

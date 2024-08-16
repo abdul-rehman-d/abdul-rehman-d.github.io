@@ -166,6 +166,7 @@ export const HOME_SCREEN_1_APPS: TApp[] = [
         name: "Calculator",
         size: "1x1",
         Component: Calculator,
+        topbarTheme: 'light',
     },
 ];
 

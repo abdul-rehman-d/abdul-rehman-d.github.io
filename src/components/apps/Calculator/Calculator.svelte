@@ -143,6 +143,8 @@
         flex-grow: 1;
         max-width: 100%;
 
+        padding-bottom: 1rem;
+
         display: flex;
         flex-direction: column;
 

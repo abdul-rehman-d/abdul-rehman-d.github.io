@@ -4,7 +4,8 @@ type TApp = {
     icon: string;
     size: '1x1' | '2x2' | '2x4';
     external_link?: string;
-    Component?: typeof import('svelte').SvelteComponent;
+    Component?: import('svelte').ComponentType;
+    topbarTheme?: 'light' | 'dark',
     open?: boolean,
 }
 

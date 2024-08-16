@@ -501,7 +501,6 @@ border-radius: ${100 - eased * 100}px;`;
         display: flex;
         width: 100%;
         border-radius: 28px;
-        padding-bottom: 1rem;
         background-color: black;
         transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
