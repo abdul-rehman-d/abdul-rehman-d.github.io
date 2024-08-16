@@ -95,7 +95,7 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                 name: 'Twitter Clone',
                 icon: icons.XClone,
                 size: '1x1',
-                external_link: 'https://twitter.abdulrehmandev.me/'
+                external_link: 'https://twitter-abdul-rehman-d.vercel.app/'
             },
         ],
     },
