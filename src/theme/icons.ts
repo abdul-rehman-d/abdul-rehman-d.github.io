@@ -11,6 +11,7 @@ import X from '../assets/app-icons/X.webp';
 import XClone from '../assets/app-icons/x-clone.png';
 import mail from '../assets/app-icons/mail.webp';
 import medlist from '../assets/app-icons/medlist.webp';
+import indolj from '../assets/app-icons/indolj.webp';
 import calculator from '../assets/app-icons/calculator.webp';
 
 import react from '../assets/app-icons/react.webp';
@@ -37,6 +38,7 @@ const icons = {
     XClone,
     mail,
     medlist,
+    indolj,
     calculator,
 
     technologies: {
