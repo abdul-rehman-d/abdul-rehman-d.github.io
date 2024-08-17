@@ -1,4 +1,6 @@
 <script lang="ts">
+  import SafeAreaView from "../../SafeAreaView.svelte";
+
     let currentNumStr: string = "0";
     let prevNumber: number | undefined = undefined;
     let operationSelected: string = "";
@@ -102,8 +104,7 @@
     }
 </script>
 
-<div class="calc__wrapper">
-    <div class="topbarspacer"></div>
+<SafeAreaView --bg-color="#000" --color="#fff">
     <div class="calc__main">
         <!-- <p>Calculator</p> -->
         <div class="calc__display">
@@ -136,26 +137,9 @@
             {/each}
         </div>
     </div>
-</div>
+</SafeAreaView>
 
 <style>
-    .calc__wrapper {
-        flex-grow: 1;
-        max-width: 100%;
-
-        padding-bottom: 1rem;
-
-        display: flex;
-        flex-direction: column;
-
-        background-color: #000;
-        color: #fff;
-    }
-
-    .topbarspacer {
-        flex-basis: 40px;
-    }
-
     .calc__main {
         flex-grow: 1;
 
