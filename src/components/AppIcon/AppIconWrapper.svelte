@@ -22,6 +22,7 @@
         background-color: transparent;
         padding: 0;
         margin: 0;
+        cursor: pointer;
     }
     button:focus,
     button:focus-within,

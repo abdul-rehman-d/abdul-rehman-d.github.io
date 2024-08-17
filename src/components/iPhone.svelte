@@ -373,7 +373,7 @@ border-radius: ${100 - eased * 100}px;`;
                         bind:this={recentsSlider}
                         class:recents-apps-slider={showRecents}
                     >
-                        {#each openedApps as _, appIdx (`opened-app-${appIdx}`)}
+                        {#each openedApps as app, appIdx (`opened-app-${appIdx}`)}
                             <svelte:element
                                 this={showRecents ? "swiper-slide" : "div"}
                                 {style}
@@ -388,12 +388,12 @@ border-radius: ${100 - eased * 100}px;`;
                                     bind:this={appContainers[appIdx]}
                                 >
                                     <svelte:component
-                                        this={openedApps[appIdx].Component}
+                                        this={app.Component}
                                     />
                                 </div>
                                 {#if activeAppIdx === appIdx}
                                     <div class="app-after-container">
-                                        <div class="app-after"></div>
+                                        <div class="app-after" class:light={app.topbarTheme==="light"}></div>
                                     </div>
                                 {/if}
                             </svelte:element>
@@ -529,8 +529,11 @@ border-radius: ${100 - eased * 100}px;`;
         width: 50%;
         bottom: 0.5rem;
         left: 25%;
-        background-color: white;
+        background-color: #000;
         border-radius: 5px;
+    }
+    .app-after.light {
+        background-color: #fff;
     }
     .app-inner-container.recents::after {
         display: none;
