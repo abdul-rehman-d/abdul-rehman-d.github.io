@@ -51,5 +51,6 @@
         font-size: 10px;
         font-weight: 500;
         color: var(--textcolor, #1c1c1e);
+        text-align: center;
     }
 </style>

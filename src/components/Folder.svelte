@@ -1,14 +1,18 @@
 <script lang="ts">
     import AppIcon from "./AppIcon/AppIcon.svelte";
 
-    import { quintOut } from "svelte/easing";
-    import { crossfade, fade } from "svelte/transition";
+    import { createEventDispatcher } from "svelte";
+
     import { flip } from "svelte/animate";
 
     export let folder: TFolder;
 
-    let showModalContainer: boolean = false;
-    let showModalApps: boolean = false;
+    export let send;
+    export let receive;
+
+    export let showModalApps: boolean = false;
+
+    const dispatch = createEventDispatcher();
 
     $: isFolderExpandable = folder.apps.length > 4;
 
@@ -16,37 +20,15 @@
     $: smallIcons = isFolderExpandable ? folder.apps.slice(3, 7) : [];
     $: restOfApps = folder.apps.length > 7 ? folder.apps.slice(7) : [];
 
-    const [send, receive] = crossfade({
-        fallback(node, params) {
-            const style = getComputedStyle(node);
-            const transform = style.transform === "none" ? "" : style.transform;
-
-            return {
-                duration: 500,
-                easing: quintOut,
-                css: (t) => `
-transform: ${transform} scale(${t});
-opacity: ${t}`,
-            };
-        },
-    });
-
     function toggleFolderExpansion() {
         if (!isFolderExpandable) {
             console.log("no expand");
             return;
         }
-        console.log("yes expand");
-        showModalContainer = !showModalContainer;
-    }
 
-    function toggleAppAnimation() {
-        if (showModalApps) {
-            setTimeout(() => {
-                showModalContainer = false;
-            }, 100);
-        }
-        showModalApps = !showModalApps;
+        dispatch("folderOpen", {
+            folder,
+        })
     }
 </script>
 
@@ -104,31 +86,6 @@ opacity: ${t}`,
     </p>
 </div>
 
-{#if showModalContainer}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div
-        class="appLibrary__folder_expanded"
-        transition:fade={{ duration: 100 }}
-        on:click={toggleAppAnimation}
-        on:introend={toggleAppAnimation}
-    >
-        <div class="appLibrary__folder_expanded__grid">
-            {#each showModalApps ? folder.apps : [] as app (app.name)}
-                <div
-                    in:receive={{ key: app.name }}
-                    out:send={{ key: app.name }}
-                    animate:flip
-                    class="appLibrary__folder_expanded__grid_folder"
-                >
-                    <AppIcon {app} --roundness="10px" />
-                </div>
-            {/each}
-        </div>
-        <div class="blurrr"></div>
-    </div>
-{/if}
-
 <style>
     .appLibrary__folder {
         display: flex;
@@ -172,46 +129,6 @@ opacity: ${t}`,
     .novisible {
         width: 0;
         height: 0;
-        overflow: hidden;
-    }
-    .appLibrary__folder_expanded {
-        position: absolute;
-
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-
-        display: flex;
-        align-items: center;
-
-        padding: 24px;
-
-        z-index: 0;
-    }
-    .blurrr {
-        position: absolute;
-
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-
-        background: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        z-index: 1;
-    }
-    .appLibrary__folder_expanded__grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        z-index: 2;
-    }
-    .appLibrary__folder_expanded__grid_folder {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    .appLibrary__folder_expanded__grid > * {
         overflow: hidden;
     }
 </style>
