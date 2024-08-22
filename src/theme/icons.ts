@@ -11,6 +11,8 @@ import medlist from '../assets/app-icons/medlist.webp';
 import indolj from '../assets/app-icons/indolj.webp';
 import calculator from '../assets/app-icons/calculator.webp';
 
+import web from '../assets/app-icons/web.webp';
+
 import react from '../assets/app-icons/react.webp';
 import next from '../assets/app-icons/next.webp';
 import node from '../assets/app-icons/node.webp';
@@ -36,6 +38,8 @@ const icons = {
     medlist,
     indolj,
     calculator,
+
+    web,
 
     technologies: {
         react,

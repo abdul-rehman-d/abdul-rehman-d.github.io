@@ -124,7 +124,7 @@
         <div>
           <AnchorIconButton
             link={app.project_details?.web_preview_link}
-            icon={icons.github}
+            icon={icons.web}
             text="Preview"
             --bg-color="#a2cffe"
             --color="#000"
