@@ -16,6 +16,7 @@
     import { getTranslateString } from "../utils/formatters";
     import { images } from "../theme";
     import { store } from "../store";
+    import ProjectPreview from "./apps/ProjectPreview.svelte";
 
     // ****** LOGIC ******
     let openedApps: TApp[] = [];
@@ -387,9 +388,13 @@ border-radius: ${100 - eased * 100}px;`;
                                     out:scaleOut={{ duration: 300 }}
                                     bind:this={appContainers[appIdx]}
                                 >
-                                    <svelte:component
-                                        this={app.Component}
-                                    />
+                                    {#if app.Component}
+                                        <svelte:component
+                                            this={app.Component}
+                                        />
+                                    {:else}
+                                        <ProjectPreview app={app} />
+                                    {/if}
                                 </div>
                                 {#if activeAppIdx === appIdx}
                                     <div class="app-after-container">

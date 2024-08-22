@@ -7,7 +7,7 @@
     <a href={app.external_link} target="_blank" rel="noopener noreferrer">
         <slot />
     </a>
-{:else if app.Component}
+{:else if app.Component || app.project_details}
     <button on:click={() => store.openApp(app)}>
         <slot />
     </button>

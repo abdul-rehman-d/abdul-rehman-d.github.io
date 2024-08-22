@@ -1,5 +1,6 @@
 import statusBarIcons from '../assets/icons/status-bar-right-icons.png';
 import search from '../assets/icons/magnifyingglass.png';
+import googlePlay from '../assets/icons/google-play.webp'
 
 import appleWallet from '../assets/app-icons/apple-wallet.webp';
 import messages from '../assets/app-icons/messages.webp';
@@ -24,6 +25,8 @@ import python from '../assets/app-icons/python.webp';
 import git from '../assets/app-icons/git.webp';
 import linux from '../assets/app-icons/linux.webp';
 import docker from '../assets/app-icons/docker.webp';
+import trpc from '../assets/app-icons/trpc.svg';
+import prisma from '../assets/app-icons/prisma.png';
 
 const icons = {
     appleWallet,
@@ -32,6 +35,7 @@ const icons = {
     photos,
     statusBarIcons,
     search,
+    googlePlay,
     linkedin,
     github,
     X,
@@ -52,6 +56,8 @@ const icons = {
         git,
         linux,
         docker,
+        trpc,
+        prisma,
     },
 };
 

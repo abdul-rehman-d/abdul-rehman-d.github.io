@@ -86,16 +86,63 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
         name: 'Personal Projects',
         apps: [
             {
+                id: "medlist",
                 name: 'MedList',
                 icon: icons.medlist,
                 size: '1x1',
-                external_link: 'https://play.google.com/store/apps/details?id=com.abdulrehmand.MedList'
+                project_details: {
+                    description: `MedList is a simple mobile app to help you keep a list of all your medications.<br>This app lets you share that list with doctor or pharmacist. You can select which medicines you want to share and which you don't.`,
+                    image: images.screenshots.medlist,
+                    technologies: [{
+                        name: "React Native",
+                        icon: icons.technologies.react,
+                    }],
+                    play_store_link: "https://play.google.com/store/apps/details?id=com.abdulrehmand.MedList",
+                    code_link: "https://github.com/abdul-rehman-d/medlist",
+                    colors: {
+                        fg: "#000000",
+                        bg: "#E6DFF8",
+                    },
+                },
             },
             {
-                name: 'Twitter Clone',
+                id: "x-clone",
+                name: 'X Clone',
                 icon: icons.XClone,
                 size: '1x1',
-                external_link: 'https://twitter-abdul-rehman-d.vercel.app/'
+                topbarTheme: 'light',
+                project_details: {
+                    description: `A clone of X(formerly Twitter) with complete backend and frontend functionality of tweeting, liking and replying. Robust authentication using third party social accounts, i.e. Github and Google.`,
+                    image: images.screenshots.xclone,
+                    technologies: [
+                        {
+                            name: "React",
+                            icon: icons.technologies.react,
+                        },
+                        {
+                            name: "Next",
+                            icon: icons.technologies.next,
+                        },
+                        {
+                            name: "Typescript",
+                            icon: icons.technologies.typescript,
+                        },
+                        {
+                            name: 'tRPC',
+                            icon: icons.technologies.trpc,
+                        },
+                        {
+                            name: 'Prisma',
+                            icon: icons.technologies.prisma,
+                        },
+                    ],
+                    web_preview_link: "https://twitter-abdul-rehman-d.vercel.app/",
+                    code_link: "https://github.com/abdul-rehman-d/twitter-clone",
+                    colors: {
+                        fg: "#ffffff",
+                        bg: "#111827",
+                    },
+                },
             },
         ],
     },
@@ -103,10 +150,11 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
         name: 'Projects I\'ve worked on',
         apps: [
             {
+                id: 'indolj',
                 name: 'Indolj',
                 icon: icons.indolj,
                 size: '1x1',
-                external_link: 'https://indolj.pk/',
+                // external_link: 'https://indolj.pk/',
             },
             // {
             //     name: 'California',
@@ -134,11 +182,6 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
             // },
         ],
     },
-    // {
-    //     name: 'Web Apps',
-    //     apps: [
-    //     ],
-    // },
 ]
 
 export const HOME_SCREEN_1_APPS: TApp[] = [
@@ -152,20 +195,6 @@ export const HOME_SCREEN_1_APPS: TApp[] = [
         name: "Maps",
         size: "2x2",
     },
-    // {
-    //     id: "photo",
-    //     icon: icons.photos,
-    //     name: "Photos",
-    //     size: "1x1",
-    //     Component: Dummy,
-    // },
-    // {
-    //     id: "wallet",
-    //     icon: icons.appleWallet,
-    //     name: "Wallet",
-    //     size: "1x1",
-    //     Component: Dummy,
-    // },
     {
         id: "calculator",
         icon: icons.calculator,
