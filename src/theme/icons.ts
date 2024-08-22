@@ -25,6 +25,10 @@ import linux from '../assets/app-icons/linux.webp';
 import docker from '../assets/app-icons/docker.webp';
 import trpc from '../assets/app-icons/trpc.webp';
 import prisma from '../assets/app-icons/prisma.webp';
+import redux from '../assets/app-icons/redux.webp';
+import react_native_paper from '../assets/app-icons/react-native-paper.webp';
+import zod from '../assets/app-icons/zod.webp';
+import tailwind from '../assets/app-icons/tailwind.webp';
 
 const icons = {
     messages,
@@ -54,6 +58,10 @@ const icons = {
         docker,
         trpc,
         prisma,
+        redux,
+        react_native_paper,
+        zod,
+        tailwind,
     },
 };
 

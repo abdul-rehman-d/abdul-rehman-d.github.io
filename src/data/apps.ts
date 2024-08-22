@@ -93,10 +93,24 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                 project_details: {
                     description: `MedList is a simple mobile app to help you keep a list of all your medications.<br>This app lets you share that list with doctor or pharmacist. You can select which medicines you want to share and which you don't.`,
                     image: images.screenshots.medlist,
-                    technologies: [{
-                        name: "React Native",
-                        icon: icons.technologies.react,
-                    }],
+                    technologies: [
+                        {
+                            name: "React Native",
+                            icon: icons.technologies.react,
+                        },
+                        {
+                            name: "Typescript",
+                            icon: icons.technologies.typescript,
+                        },
+                        {
+                            name: "Redux",
+                            icon: icons.technologies.redux,
+                        },
+                        {
+                            name: "React Native Paper",
+                            icon: icons.technologies.react_native_paper,
+                        },
+                    ],
                     play_store_link: "https://play.google.com/store/apps/details?id=com.abdulrehmand.MedList",
                     code_link: "https://github.com/abdul-rehman-d/medlist",
                     colors: {
@@ -135,6 +149,14 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                             name: 'Prisma',
                             icon: icons.technologies.prisma,
                         },
+                        {
+                            name: 'Zod',
+                            icon: icons.technologies.zod,
+                        },
+                        {
+                            name: 'Tailwind',
+                            icon: icons.technologies.tailwind,
+                        },
                     ],
                     web_preview_link: "https://twitter-abdul-rehman-d.vercel.app/",
                     code_link: "https://github.com/abdul-rehman-d/twitter-clone",
@@ -154,7 +176,7 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                 name: 'Indolj',
                 icon: icons.indolj,
                 size: '1x1',
-                // external_link: 'https://indolj.pk/',
+                external_link: 'https://indolj.pk/',
             },
             // {
             //     name: 'California',
