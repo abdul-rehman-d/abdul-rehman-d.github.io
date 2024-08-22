@@ -1,5 +1,4 @@
 <script lang="ts">
-    import searchIcon from "../assets/icons/magnifyingglass.png";
     import SearchIcon from 'virtual:icons/tabler/search';
     import { APP_LIBRARY_FOLDERS } from "../data/apps";
     import Folder from "./Folder.svelte";
