@@ -7,6 +7,7 @@
 
   import ArrowRight from 'virtual:icons/material-symbols/arrow-right-alt';
   import ArrowLeft from 'virtual:icons/material-symbols/arrow-left-alt';
+  import { hexToRGB } from "../../utils/formatters";
 
   export let app: TApp;
 
@@ -20,14 +21,14 @@
   function scrollTechnologiesContainer(dir: "left"|"right") {
     switch (dir) {
       case "left":
-        technologiesContainer.scroll({
-          left: -100,
+        technologiesContainer.scrollBy({
+          left: -56*2,
           behavior: "smooth",
         })
         break;
       case "right":
-        technologiesContainer.scroll({
-          left: 100,
+        technologiesContainer.scrollBy({
+          left: 56*2,
           behavior: "smooth",
         })
         break;
@@ -93,12 +94,18 @@
           {/each}
           {#if showScrollBar}
             {#if showLeft}
-              <button class="nav-button left" on:click={() => scrollTechnologiesContainer("left")}>
+              <button
+                class="nav-button left"
+                style="background: rgba({hexToRGB(app.project_details?.colors.fg)}, 0.5)"
+                on:click={() => scrollTechnologiesContainer("left")}>
                 <ArrowLeft />
               </button>
-            {/if}
-            {#if showRight}
-              <button class="nav-button right" on:click={() => scrollTechnologiesContainer("right")}>
+              {/if}
+              {#if showRight}
+              <button
+                class="nav-button right"
+                style="background: rgba({hexToRGB(app.project_details?.colors.fg)}, 0.5)"
+                on:click={() => scrollTechnologiesContainer("right")}>
                 <ArrowRight />  
               </button>
             {/if}
