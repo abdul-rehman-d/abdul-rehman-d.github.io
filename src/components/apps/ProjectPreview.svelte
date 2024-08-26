@@ -114,6 +114,10 @@
       </div>
     {/if}
 
+    {#if app.project_details?.extra_section}
+      <svelte:component this={app.project_details.extra_section} />
+    {/if}
+
     <!-- actions -->
     <div class="buttons-container">
       {#if app.project_details?.play_store_link}
@@ -160,6 +164,7 @@
     overflow-y: auto;
 
     padding-inline: 0.5rem;
+    padding-bottom: 2rem;
 
     display: flex;
     flex-direction: column;

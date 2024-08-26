@@ -10,6 +10,7 @@ type TApp = {
         image: string;
         bullet_points?: string[];
         technologies: Technology[];
+        extra_section?: import('svelte').ComponentType;
         play_store_link?: string;
         code_link?: string;
         web_preview_link?: string;
