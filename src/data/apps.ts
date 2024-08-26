@@ -1,5 +1,6 @@
 import { icons, images } from "../theme";
 import Calculator from '../components/apps/Calculator/Calculator.svelte';
+import IndoljClients from "../components/apps/CustomSections/IndoljClients.svelte";
 
 export const APP_LIBRARY_FOLDERS: TFolder[] = [
     {
@@ -176,32 +177,38 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                 name: 'Indolj',
                 icon: icons.indolj,
                 size: '1x1',
-                external_link: 'https://indolj.pk/',
+                project_details: {
+                    description: `
+                    Indolj is a complete suite of tools for restaurants including an online ordering web application,
+                    an admin panel and point-of-sale system.<br>
+                    I have personally worked on the web app, admin panel and POS system. My biggest achievements include:<br><br>
+                    - Increasing the SEO optimization and Lighthouse score from 60's% to 90s.<br><br>
+                    - Single-handedly porting the entire codebase from simple CRA to Nextjs and use Server Side Rendering to keep it optimized.<br><br>
+                    - Increase the performance of web app by using more modern state management solutions.<br><br>
+                    `,
+                    image: images.screenshots.xclone,
+                    technologies: [
+                        {
+                            name: "React",
+                            icon: icons.technologies.react,
+                        },
+                        {
+                            name: "Next",
+                            icon: icons.technologies.next,
+                        },
+                        {
+                            name: "Redux",
+                            icon: icons.technologies.redux,
+                        },
+                    ],
+                    extra_section: IndoljClients,
+                    web_preview_link: 'https://indolj.pk/',
+                    colors: {
+                        bg: "#eeeeee",
+                        fg: "#000000",
+                    },
+                },
             },
-            // {
-            //     name: 'California',
-            //     icon: 'https://console.indolj.io/upload/1658409985-Logo-california.png',
-            //     size: '1x1',
-            //     external_link: 'https://californiapizza.com.pk/'
-            // },
-            // {
-            //     name: 'Rehmat e Shereen',
-            //     icon: 'https://scontent.fkhi17-1.fna.fbcdn.net/v/t39.30808-6/379305415_708654591298005_5298503343706501957_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHwxWq4hz8d_L1DhPpgXhjWcroRI-rnnyZyuhEj6uefJnqu3JVmwhY2DyLYZilCDnnehMicFTrEPNK1jsLwZuRw&_nc_ohc=NfzmbDyZdbcQ7kNvgECJmw3&_nc_ht=scontent.fkhi17-1.fna&oh=00_AYDh8ffYt5lyU2f1BNqsD_Rl3x_HRkqn9ijQaA0b1-h7JQ&oe=6679D69C',
-            //     size: '1x1',
-            //     external_link: 'https://order.rehmateshereen.com/'
-            // },
-            // {
-            //     name: 'United King',
-            //     icon: 'https://console.indolj.io/upload/1652698752-uk-1.jpg',
-            //     size: '1x1',
-            //     external_link: 'https://www.unitedkingonline.com/'
-            // },
-            // {
-            //     name: 'Pie in the Sky',
-            //     icon: 'https://console.indolj.io/upload/1658775499-Logo.png',
-            //     size: '1x1',
-            //     external_link: 'https://order.pieinthesky.com.pk/'
-            // },
         ],
     },
 ]
