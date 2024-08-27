@@ -186,7 +186,7 @@ export const APP_LIBRARY_FOLDERS: TFolder[] = [
                     - Single-handedly porting the entire codebase from simple CRA to Nextjs and use Server Side Rendering to keep it optimized.<br><br>
                     - Increase the performance of web app by using more modern state management solutions.<br><br>
                     `,
-                    image: images.screenshots.xclone,
+                    image: images.screenshots.indolj,
                     technologies: [
                         {
                             name: "React",

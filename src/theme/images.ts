@@ -4,6 +4,7 @@ import frame from '../assets/images/frame.png';
 
 import medlist from '../assets/screenshots/medlist_hero.png';
 import xclone from '../assets/screenshots/x-clone.png';
+import indolj from '../assets/screenshots/indolj.png';
 
 import gif01 from '../assets/gifs/01.webm';
 import gif02 from '../assets/gifs/02.webm';
@@ -19,6 +20,7 @@ const images = {
     screenshots: {
         medlist,
         xclone,
+        indolj,
     },
 
     gifs: {

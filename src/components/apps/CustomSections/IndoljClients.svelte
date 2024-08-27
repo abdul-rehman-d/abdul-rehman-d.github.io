@@ -90,10 +90,10 @@
       on:scroll={onScroll}
     >
       {#each clients as client}
-        <div class="item">
+        <a class="item" href={client.link} target="_blank">
           <img src={client.icon} alt={client.name} />
           <span>{client.name}</span>
-        </div>
+        </a>
       {/each}
       {#if showScrollBar}
         {#if showLeft}
@@ -163,7 +163,7 @@
     right: 0;
   }
 
-  .list-container > div {
+  .list-container > .item {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 3rem;
@@ -175,6 +175,8 @@
     align-items: center;
     gap: .25rem;
     padding: .25rem;
+    text-decoration: none;
+    color: inherit;
   }
   .item img {
     width: 100%;
