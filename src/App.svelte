@@ -5,8 +5,15 @@
 
   import IPhone from "./components/iPhone.svelte";
   import Loader from "./components/Loader.svelte";
+  import HelpModal from "./components/HelpModal.svelte";
 
   let loading = true;
+  let showHelpModal: boolean = false;
+
+  function openModal() {
+    console.log("opening modal")
+    showHelpModal = true;
+  }
 
   function onLoad() {
     loading = false;
@@ -21,6 +28,8 @@
     {/if}
   </div>
 </main>
+<button on:click={openModal}>How to use</button>
+<HelpModal bind:showModal={showHelpModal} />
 
 <style>
   .container__main {
@@ -41,6 +50,28 @@
     padding: 1rem;
 
     position: relative;
+  }
+
+  @media (max-width: 540px) {
+    .container__main {
+      padding-top: 2rem;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    background-color: #000;
+    color: #fff;
+    padding: .25rem 1rem;
+    outline: none;
+    border: none;
+    box-shadow: none;
+
+    cursor: pointer;
   }
 </style>
 
