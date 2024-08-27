@@ -15,12 +15,21 @@
   // refs
   let swiperEl: SwiperContainer;
   let dialog: HTMLDialogElement;
+  let videos: HTMLVideoElement[] = [];
 
   // constants
   const swiperParams: SwiperOptions = {
     on: {
       activeIndexChange: (swiper) => {
         activeIdx = swiper.activeIndex;
+        videos[activeIdx].currentTime = 0
+        videos[activeIdx].play()
+        videos.forEach((v,i) => {
+          if (i!==activeIdx) {
+            v.pause()
+            v.currentTime = 0
+          }
+        })
       }
     },
     pagination: {
@@ -77,11 +86,17 @@
     console.log("showModal", showModal)
     if (showModal) {
       activeIdx = 0;
+      videos[0].currentTime = 0
+      videos[0].play()
       if (dialog) {
         dialog.showModal();
       }
     } else {
       activeIdx = -1;
+      videos.forEach(v => {
+        v.pause()
+        v.currentTime = 0
+      })
     }
   }
 </script>
@@ -107,7 +122,7 @@
           <div class="slide">
             <p class="slide-desc">{slide.title}</p>
             <div class="slide-gif-container">
-              <video autoplay={idx===activeIdx} loop muted controls={false}>
+              <video bind:this={videos[idx]} loop muted controls={false}>
                 <source type="video/webm" src={slide.gif}>
               </video>
             </div>
@@ -135,6 +150,7 @@
   dialog[open] {
     width: 300px;
     height: 90%;
+    max-height: 640px;
     display: flex;
     
 		animation: zoom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
