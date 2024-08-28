@@ -1,11 +1,13 @@
 <script lang="ts">
   import "swiper/css";
   import { register } from "swiper/element/bundle";
+  import { inject } from "@vercel/analytics";
   register();
 
   import IPhone from "./components/iPhone.svelte";
   import Loader from "./components/Loader.svelte";
   import HelpModal from "./components/HelpModal.svelte";
+    import { onMount } from "svelte";
 
   let loading = true;
   let showHelpModal: boolean = false;
@@ -17,6 +19,10 @@
 
   function onLoad() {
     loading = false;
+  }
+
+  if (import.meta.env.PROD) {
+    inject()
   }
 </script>
 
