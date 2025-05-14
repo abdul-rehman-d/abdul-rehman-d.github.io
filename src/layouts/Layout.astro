@@ -1,0 +1,49 @@
+---
+import "./src/styles/global.css";
+import data from "../assets/data.json";
+
+const domain = new URL(data.websiteLink).host;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+
+		<link rel="icon" type="image/png" href="/logo.png" />
+
+		<title>{data.title}</title>
+		<meta name="description" content={data.shortDescription} />
+
+		<!-- Facebook Meta Tags -->
+		<meta property="og:url" content={data.websiteLink} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={data.title} />
+		<meta property="og:description" content={data.shortDescription} />
+		<meta property="og:image" content={data.ogImageUrl} />
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content={domain} />
+		<meta property="twitter:url" content={data.websiteLink} />
+		<meta name="twitter:title" content={data.title} />
+		<meta name="twitter:description" content={data.shortDescription} />
+		<meta name="twitter:image" content={data.ogImageUrl} />
+
+		<!-- Disable Dark Reader extension -->
+		<meta name="darkreader-lock" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
