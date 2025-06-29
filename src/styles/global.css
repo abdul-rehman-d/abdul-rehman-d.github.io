@@ -1,1 +1,9 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "@fontsource/inter";
+@import "@fontsource/bitcount-grid-double";
+
+@theme {
+    --font-sans: "Inter", sans-serif;
+    --font-bitcount: "Bitcount Grid Double", monospace;
+}
