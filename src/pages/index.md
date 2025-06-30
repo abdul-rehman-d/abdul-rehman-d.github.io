@@ -23,4 +23,4 @@ When I am not working at my jobs, I am trying to learn game development with _Go
 or tinkering around with small electronics projects.
 
 Contact me on [LinkedIn](https://www.linkedin.com/in/abdul-rehman-d/)  
-Or download my [CV]()
+Or download my [CV](/Abdul%20Rehman%20Daniyal.pdf)
