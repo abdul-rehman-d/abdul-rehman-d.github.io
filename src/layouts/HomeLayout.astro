@@ -3,27 +3,31 @@ import RootLayout from "./RootLayout.astro";
 ---
 
 <RootLayout>
-    <header>
-        <h1 class="text-2xl sm:text-3xl font-bitcount">
-            <a href="/" class="text-indigo-700 dark:text-indigo-400">
-                Abdul Rehman Daniyal
-            </a>
-        </h1>
-        <p>Software Engineer</p>
-    </header>
-
-    <section
-        class:list={[
-            "prose max-w-none prose-p:text-sm prose-p:sm:text-base prose-p:lg:text-lg prose-p:mb-4 prose-p:last:mb-0 prose-p:text-neutral-900 prose-p:dark:text-neutral-100",
-            "prose-a:text-orange-600 prose-a:hover:text-orange-700 prose-a:dark:text-orange-400 prose-a:dark:hover:text-orange-300 prose-a:underline prose-a:underline-offset-2",
-        ]}
+  <header>
+    <h1 class="text-2xl sm:text-3xl font-bitcount">
+      <a href="/" class="text-indigo-700 dark:text-indigo-400">
+        Abdul Rehman Daniyal
+      </a>
+    </h1>
+    <p
+      class="text-base sm:text-lg lg:text-xl text-neutral-500 dark:text-neutral-400"
     >
-        <slot />
-    </section>
+      Software Engineer
+    </p>
+  </header>
 
-    <footer class="border-t py-4 text-neutral-500 dark:text-neutral-400">
-        <p class="text-xs sm:text-sm">
-            © {new Date().getFullYear()} Abdul Rehman Daniyal. All rights reserved.
-        </p>
-    </footer>
+  <section
+    class:list={[
+      "prose max-w-none prose-p:text-sm prose-p:sm:text-base prose-p:lg:text-lg prose-p:mb-4 prose-p:last:mb-0 prose-p:text-neutral-900 prose-p:dark:text-neutral-100",
+      "prose-a:text-orange-600 prose-a:hover:text-orange-700 prose-a:dark:text-orange-300 prose-a:dark:hover:text-orange-400 prose-a:underline prose-a:underline-offset-2",
+    ]}
+  >
+    <slot />
+  </section>
+
+  <footer class="border-t py-4 text-neutral-500 dark:text-neutral-400">
+    <p class="text-xs sm:text-sm">
+      © {new Date().getFullYear()} Abdul Rehman Daniyal. All rights reserved.
+    </p>
+  </footer>
 </RootLayout>
