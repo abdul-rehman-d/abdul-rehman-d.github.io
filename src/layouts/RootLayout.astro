@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+import data from "../assets/data.json";
+
+// Use Astro.site instead of Astro.url
+const site = Astro.site ?? Astro.url;
+const domain = new URL(site).host;
+const url = site.origin.endsWith("/") ? site.origin : site.origin + "/";
+const ogImageUrl = `${url}${data.ogImageUrl}`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+
+		<link rel="icon" type="image/png" href="/logo.png" />
+
+		<title>{data.title}</title>
+		<meta name="description" content={data.shortDescription} />
+
+		<!-- Facebook Meta Tags -->
+		<meta property="og:url" content={url} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={data.title} />
+		<meta property="og:description" content={data.shortDescription} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:site_name" content={data.title} />
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content={domain} />
+		<meta property="twitter:url" content={url} />
+		<meta name="twitter:title" content={data.title} />
+		<meta name="twitter:description" content={data.shortDescription} />
+		<meta name="twitter:image" content={ogImageUrl} />
+
+		<!-- Disable Dark Reader extension -->
+		<meta name="darkreader-lock" />
+	</head>
+	<body
+		class:list={[
+			"min-h-screen flex flex-col",
+			"bg-stone-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100",
+		]}
+	>
+		<main
+			class:list={[
+				"w-full max-w-5xl mx-auto text-sm sm:text-base lg:text-lg flex flex-col gap-8 py-12 px-8",
+			]}
+		>
+			<slot />
+		</main>
+	</body>
+</html>

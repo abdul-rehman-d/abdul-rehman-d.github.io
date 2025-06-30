@@ -22,5 +22,6 @@ It is an interactive iphone thing where user can swipe and open apps and stuff t
 [Branch Link](https://github.com/abdul-rehman-d/abdul-rehman-d.github.io/tree/v3)
 
 ### V4
-Going back to simplicity.
-Under construction.
+Made with Astro and deployed still on Vercel.
+It is just plain HTML, (or markdown) with a bit of tailwind - Went back to simplicity
+
