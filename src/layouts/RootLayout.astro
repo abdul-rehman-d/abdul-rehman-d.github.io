@@ -2,8 +2,10 @@
 import "../styles/global.css";
 import data from "../assets/data.json";
 
-const domain = Astro.url.host;
-const url = Astro.url.origin + "/";
+// Use Astro.site instead of Astro.url
+const site = Astro.site ?? Astro.url;
+const domain = new URL(site).host;
+const url = site.origin.endsWith("/") ? site.origin : site.origin + "/";
 const ogImageUrl = `${url}${data.ogImageUrl}`;
 ---
 
@@ -24,6 +26,7 @@ const ogImageUrl = `${url}${data.ogImageUrl}`;
 		<meta property="og:title" content={data.title} />
 		<meta property="og:description" content={data.shortDescription} />
 		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:site_name" content={data.title} />
 
 		<!-- Twitter Meta Tags -->
 		<meta name="twitter:card" content="summary_large_image" />
