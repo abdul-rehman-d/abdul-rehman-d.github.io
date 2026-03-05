@@ -3,11 +3,14 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+
   site: process.env.VERCEL === "1" ? (
     process.env.VERCEL_ENV === "production" ?
       `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` :
@@ -17,4 +20,6 @@ export default defineConfig({
       "https://abdul-rehman-d.com" :
       "http://localhost:4321"
   ),
+
+  integrations: [mdx()],
 });
