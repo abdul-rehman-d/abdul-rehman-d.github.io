@@ -10,12 +10,14 @@ import { PROJECTS_DATA } from "../assets/data";
   <div class="group flex items-center">
     {
       PROJECTS_DATA.apps.map((app, index) => (
-        <div
-          class={`group/item relative ${index === 0 ? "ml-0" : "-ml-4"} transition-all duration-500 ease-out group-hover:ml-2`}
+        <a
+          href={app.link}
+          class={`group/item relative ${index === 0 ? "ml-0" : "ml-2 md:-ml-4"} transition-all duration-500 ease-out md:group-hover:ml-2`}
           aria-label={`${app.name} ${app.description}`}
+          target="_blank"
         >
           <div
-            class="flex h-16 w-16 items-center overflow-hidden justify-center rounded-xl border-2 border-neutral-900 transition-transform duration-500 ease-out hover:-translate-y-0.5 cursor-pointer rotate-[var(--tilt)] group-hover:rotate-0"
+            class="flex h-16 w-16 items-center overflow-hidden justify-center rounded-xl border-2 border-neutral-900 transition-transform duration-500 ease-out hover:-translate-y-0.5 cursor-pointer rotate-0 md:rotate-[var(--tilt)] md:group-hover:rotate-0"
             style={`--tilt: ${index % 2 === 0 ? -8 : 4}deg;`}
           >
             <Image
@@ -26,11 +28,11 @@ import { PROJECTS_DATA } from "../assets/data";
               class="h-full w-full object-contain"
             />
           </div>
-          <div class="pointer-events-none absolute left-1/2 top-full z-10 mt-3 w-max -translate-x-1/2 rounded-xl border border-white/10 bg-neutral-950/95 px-3 py-2 text-xs font-medium text-neutral-100 opacity-0 shadow-[0_12px_30px_rgba(15,23,42,0.6)] transition-opacity duration-500 ease-out group-hover/item:opacity-100 hover:opacity-100">
+          <div class="pointer-events-none absolute left-1/2 top-full z-10 mt-3 w-max -translate-x-1/2 rounded-xl border border-white/10 bg-neutral-950/95 px-3 py-2 text-xs font-medium text-neutral-100 opacity-0 shadow-[0_12px_30px_rgba(15,23,42,0.6)] transition-opacity duration-500 ease-out hidden md:block md:group-hover/item:opacity-100">
             <p class="font-semibold text-white">{app.name}</p>
             <p class="text-neutral-300">{app.description}</p>
           </div>
-        </div>
+        </a>
       ))
     }
   </div>
