@@ -6,11 +6,6 @@
 	document.querySelectorAll("[data-cv-link]").forEach((link) => {
 		link.addEventListener("click", () => {
 			track("cv_opened");
-
-			const posthog = (window as any).posthog;
-			if (posthog && typeof posthog.capture === "function") {
-				posthog.capture("cv_opened");
-			}
 		});
 	});
 </script>

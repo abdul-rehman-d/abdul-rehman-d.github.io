@@ -1,7 +1,6 @@
 ---
 import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
-import PostHog from "../components/Posthog.astro";
 import { SEO_DATA } from "../assets/data";
 
 const data = SEO_DATA;
@@ -42,8 +41,6 @@ const ogImageUrl = `${url}${data.ogImageUrl}`;
 
 		<!-- Disable Dark Reader extension -->
 		<meta name="darkreader-lock" />
-
-		<PostHog />
 	</head>
 	<body
 		class:list={[
