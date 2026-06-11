@@ -1,4 +1,5 @@
 ---
+import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
 import { SEO_DATA } from "../assets/data";
 
@@ -106,5 +107,6 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog
 		>
 			<slot />
 		</main>
+		<Analytics />
 	</body>
 </html>
